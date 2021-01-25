@@ -1,0 +1,81 @@
+fileFormatVersion: 2
+guid: f393ecc881b64884684422d4ebe92faf
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - CardB0: {fileID: 2955235152491174886, guid: 16479df79874d5e469395566576704e9,
+      type: 3}
+  - CardB1: {fileID: 1535572579395523665, guid: 82f1c4b4904bbf34b9a0f1e4a6a0d017,
+      type: 3}
+  - CardB2: {fileID: 1368688934834120123, guid: 0ee12b8f0b03e9e42b0b67ccc2e4a400,
+      type: 3}
+  - CardB3: {instanceID: 0}
+  - CardB4: {instanceID: 0}
+  - CardB5: {instanceID: 0}
+  - CardB6: {fileID: 6431921043594915970, guid: 3cdce4c2a86016148a47d0aa592b38a9,
+      type: 3}
+  - CardB7: {instanceID: 0}
+  - CardB8: {instanceID: 0}
+  - CardB9: {instanceID: 0}
+  - CardBD: {fileID: 3041452183051225706, guid: 7c3ffdd0eac633d48a0569ac3cf27985,
+      type: 3}
+  - CardBR: {instanceID: 0}
+  - CardBS: {instanceID: 0}
+  - CardG0: {instanceID: 0}
+  - CardG1: {instanceID: 0}
+  - CardG2: {instanceID: 0}
+  - CardG3: {fileID: 5747538464777083297, guid: 7cba64a996b36d64bb3f3306fdcaa901,
+      type: 3}
+  - CardG4: {instanceID: 0}
+  - CardG5: {instanceID: 0}
+  - CardG6: {instanceID: 0}
+  - CardG7: {instanceID: 0}
+  - CardG8: {instanceID: 0}
+  - CardG9: {instanceID: 0}
+  - CardGD: {instanceID: 0}
+  - CardGR: {instanceID: 0}
+  - CardGS: {instanceID: 0}
+  - CardR0: {instanceID: 0}
+  - CardR1: {fileID: 7435794636346359921, guid: 60e93d25728436643855b9e2ab017b9d,
+      type: 3}
+  - CardR2: {instanceID: 0}
+  - CardR3: {instanceID: 0}
+  - CardR4: {instanceID: 0}
+  - CardR5: {fileID: 5603530221480572557, guid: a8a9c94d8323d9141bef9e0cef98f332,
+      type: 3}
+  - CardR6: {instanceID: 0}
+  - CardR7: {instanceID: 0}
+  - CardR8: {instanceID: 0}
+  - CardR9: {instanceID: 0}
+  - CardRD: {instanceID: 0}
+  - CardRR: {instanceID: 0}
+  - CardRS: {instanceID: 0}
+  - CardY0: {instanceID: 0}
+  - CardY1: {instanceID: 0}
+  - CardY2: {instanceID: 0}
+  - CardY3: {instanceID: 0}
+  - CardY4: {fileID: 573511186908607194, guid: 4741af57c97dc9748aa6059e64795f1e, type: 3}
+  - CardY5: {instanceID: 0}
+  - CardY6: {instanceID: 0}
+  - CardY7: {instanceID: 0}
+  - CardY8: {instanceID: 0}
+  - CardY9: {instanceID: 0}
+  - CardYD: {instanceID: 0}
+  - CardYR: {instanceID: 0}
+  - CardYS: {instanceID: 0}
+  - CardW: {instanceID: 0}
+  - CardW4: {instanceID: 0}
+  - CurrentPlayedCard: {instanceID: 0}
+  - PlayerArea: {instanceID: 0}
+  - EnemyArea1: {instanceID: 0}
+  - EnemyArea2: {instanceID: 0}
+  - EnemyArea3: {instanceID: 0}
+  - DeckZone: {instanceID: 0}
+  - DiscardPile: {instanceID: 0}
+  - Button: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
