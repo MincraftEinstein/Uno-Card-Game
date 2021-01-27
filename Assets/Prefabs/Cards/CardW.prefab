@@ -93,9 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DiscardPile: {fileID: 0}
-  WildMenu: {fileID: 2816922805334607249, guid: 9916b2745b77c194392844094c49fa98,
-    type: 3}
-  Canvas: {fileID: 0}
+  Menu: {fileID: 4363222893534083234, guid: 636ee8481a2434e4da43d2f0bbd97c7e, type: 3}
 --- !u!114 &724921741620791946
 MonoBehaviour:
   m_ObjectHideFlags: 0

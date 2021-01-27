@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\CardProperties.cs" />
     <Compile Include="Assets\Scripts\DragDrop.cs" />
     <Compile Include="Assets\Scripts\DrawCards.cs" />
+    <Compile Include="Assets\Scripts\MainMenuButtons.cs" />
     <Compile Include="Assets\Scripts\OutputLog.cs" />
     <Compile Include="Assets\Scripts\TurnManager.cs" />
     <Compile Include="Assets\Scripts\WildButton.cs" />

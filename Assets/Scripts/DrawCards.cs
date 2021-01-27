@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
-using System.Linq;
+using UnityEngine.UI;
 
 public class DrawCards : MonoBehaviour
 {
@@ -73,15 +72,16 @@ public class DrawCards : MonoBehaviour
     public GameObject DiscardPile;
     public GameObject Button;
     public GameObject Card;
+    public Button button;
 
     public static List<GameObject> AllCards = new List<GameObject>();
     public static List<GameObject> RemainingCards = new List<GameObject>();
-    public static List<GameObject> DiscardCards = new List<GameObject>();
 
     public static List<GameObject> EnemyCards1 = new List<GameObject>();
     public static List<GameObject> EnemyCards2 = new List<GameObject>();
     public static List<GameObject> EnemyCards3 = new List<GameObject>();
     public static List<GameObject> PlayerCards = new List<GameObject>();
+    public static List<GameObject> PlayedCards = new List<GameObject>();
 
     public float rate = 0.5F;
     public float secRate = 0.5F;
@@ -157,7 +157,7 @@ public class DrawCards : MonoBehaviour
             AllCards.Add(Yellow_S);
         }
 
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 8; i++)
         {
             AllCards.Add(Wild);
             AllCards.Add(WildDraw4);
@@ -185,11 +185,11 @@ public class DrawCards : MonoBehaviour
         {
             WasClicked = true;
 
-            Blue_S.GetComponent<CardProperties>().cardType = "DontSkip";
-            Green_S.GetComponent<CardProperties>().cardType = "Skip";
-            Red_S.GetComponent<CardProperties>().cardType = "Skip";
-            Yellow_S.GetComponent<CardProperties>().cardType = "Skip";
-            //string CardColor = "";
+            if (gameObject.name == "NextRoundButton" || gameObject.name == "NewGameButton")
+            {
+                GameObject.Find("MenuBackground").SetActive(false);
+                gameObject.transform.position = new Vector3(-10000, 0, 0);
+            }
             // Destroy any remaining cards before dealing new ones.
             for (int i = 0; i < PlayerArea.transform.childCount; i++)
                 Destroy(PlayerArea.transform.GetChild(i).gameObject);
@@ -203,70 +203,7 @@ public class DrawCards : MonoBehaviour
             for (int i = 0; i < EnemyArea3.transform.childCount; i++)
                 Destroy(EnemyArea3.transform.GetChild(i).gameObject);
 
-            // Deal out the cards.
-            //for (int i = 0; i < AllCards.Count; i++)
-            //{
-            //    if (i < 28)
-            //    {
-            //        //Deal the first card to the Player.
-            //        GameObject playerCard = Instantiate(AllCards[i], new Vector3(0, 0, 0), Quaternion.identity);
-            //        playerCard.transform.SetParent(PlayerArea.transform, false);
-            //        playerCard.GetComponent<CardProperties>().HasAuthority = true;
-            //        playerCard.AddComponent<TurnManager>();
-            //        PlayerCards.Add(playerCard);
-            //        //Debug.Log(playerCard.name);
-            //        //Debug.Log(playerCard.GetComponent<CardProperties>().cardColor);
-            //        //Debug.Log(playerCard.GetComponent<CardProperties>().cardType);
-            //        //Debug.Log(playerCard.GetComponent<CardProperties>().cardScore);
-            //        i++;
-            //        //Deal the next card to the opponent to the Player's right.
-            //        GameObject enemyCard1 = Instantiate(AllCards[i], new Vector3(0, 0, 0), Quaternion.identity);
-            //        enemyCard1.transform.SetParent(EnemyArea1.transform, false);
-            //        enemyCard1.transform.Rotate(Vector3.forward * 90);
-            //        enemyCard1.GetComponent<CardProperties>().isSideways = true;
-            //        enemyCard1.GetComponent<CardProperties>().HasAuthority = false;
-            //        enemyCard1.AddComponent<TurnManager>();
-            //        EnemyCards1.Add(enemyCard1);
-            //        //Deal the next card to the opponent across the table.
-            //        i++;
-            //        GameObject enemyCard2 = Instantiate(AllCards[i], new Vector3(0, 0, 0), Quaternion.identity);
-            //        enemyCard2.transform.SetParent(EnemyArea2.transform, false);
-            //        enemyCard2.GetComponent<CardProperties>().HasAuthority = false;
-            //        enemyCard2.AddComponent<TurnManager>();
-            //        EnemyCards2.Add(enemyCard2);
-            //        //Deal the next card to the opponent to the Player's left.
-            //        i++;
-            //        GameObject enemyCard3 = Instantiate(AllCards[i], new Vector3(0, 0, 0), Quaternion.identity);
-            //        enemyCard3.transform.SetParent(EnemyArea3.transform, false);
-            //        enemyCard3.transform.Rotate(Vector3.forward * 90);
-            //        enemyCard3.GetComponent<CardProperties>().isSideways = true;
-            //        enemyCard3.GetComponent<CardProperties>().HasAuthority = false;
-            //        enemyCard3.AddComponent<TurnManager>();
-            //        EnemyCards3.Add(enemyCard3);
-            //    }
-            //    else if (i == 28)
-            //    {
-            //        //Deal the starter card to the DiscardPile.
-            //        CurrentPlayedCard = Instantiate(AllCards[i], new Vector3(0, 0, 0), Quaternion.identity);
-            //        CurrentPlayedCard.transform.SetParent(DiscardPile.transform, false);
-            //        //PlayedCards.Add(CurrentPlayedCard);
-            //    }
-            //    else
-            //    {
-            //        //Put the remainder of the deck in the DeckZone.
-            //        GameObject Card = Instantiate(AllCards[i], new Vector3(0, 0, 0), Quaternion.identity);
-            //        Card.transform.SetParent(DeckZone.transform, false);
-            //        RemainingCards.Add(Card);
-            //        if (TurnManager.Turns == 0)
-            //        {
-            //            Card.GetComponent<CardProperties>().HasAuthority = true;
-            //        }
-            //    }
-
-            //}
-
             // Create the deck of cards.
-            //RemainingCards = AllCards;
             for (int i = 0; i < AllCards.Count; i++)
             {
                 //Put the remainder of the deck in the DeckZone.
@@ -277,28 +214,15 @@ public class DrawCards : MonoBehaviour
             }
 
             // Deal out the cards.
-            StartCoroutine(DealCard());
+            StartCoroutine(DealCards());
         }
     }
 
-    IEnumerator DealCard()
+    IEnumerator DealCards()
     {
-        OutputLog.WriteToOutput("hello from discard if statment");
-        Card = RemainingCards[RemainingCards.Count - 1];
-        iS = 0;
-        while (iS < 1)
-        {
-            OutputLog.WriteToOutput("hello from discard while loop");
-            yield return new WaitForSeconds(secRate);
-            StartCoroutine(MoveTo(DiscardPile, Card, false, rate));
-            iS++;
-        }
-        RemainingCards.Remove(Card);
-        CurrentPlayedCard = Card;
-
         for (int i = 0; i < 7; i++)
         {
-            for (int iP = 0; iP < 4; iP++)  //  I want this to deal out to 4 players
+            for (int iP = 0; iP < 4; iP++)  // I want this to deal out to 4 players
             {
                 if (iP == 0)
                 {
@@ -311,9 +235,8 @@ public class DrawCards : MonoBehaviour
                         iS++;
                     }
                     RemainingCards.Remove(Card);
-                    
-                    Card.AddComponent<TurnManager>();
                     PlayerCards.Add(Card);
+                    OutputLog.WriteToOutput("player cards got" + Card);
 
                 }
                 else if (iP == 1)
@@ -327,8 +250,8 @@ public class DrawCards : MonoBehaviour
                         iS++;
                     }
                     RemainingCards.Remove(Card);
-                    Card.AddComponent<TurnManager>();
                     EnemyCards1.Add(Card);
+                    OutputLog.WriteToOutput("enemy1 cards got" + Card);
                 }
                 else if (iP == 2)
                 {
@@ -341,8 +264,8 @@ public class DrawCards : MonoBehaviour
                         iS++;
                     }
                     RemainingCards.Remove(Card);
-                    Card.AddComponent<TurnManager>();
                     EnemyCards2.Add(Card);
+                    OutputLog.WriteToOutput("enemy2 cards got" + Card);
                 }
                 else if (iP == 3)
                 {
@@ -355,11 +278,22 @@ public class DrawCards : MonoBehaviour
                         iS++;
                     }
                     RemainingCards.Remove(Card);
-                    Card.AddComponent<TurnManager>();
                     EnemyCards3.Add(Card);
+                    OutputLog.WriteToOutput("enemy3 cards got" + Card);
                 }
             }
         }
+
+        Card = RemainingCards[RemainingCards.Count - 1];
+        iS = 0;
+        while (iS < 1)
+        {
+            yield return new WaitForSeconds(secRate);
+            StartCoroutine(MoveTo(DiscardPile, Card, false, rate));
+            iS++;
+        }
+        RemainingCards.Remove(Card);
+        CurrentPlayedCard = Card;
 
         // Gives the player authority over there cards
         for (int i = 0; i < PlayerCards.Count; i++)
@@ -377,16 +311,14 @@ public class DrawCards : MonoBehaviour
     {
         print("MoveTo");
         Vector3 start = theGO.transform.position;
-        Vector3 end = CurrentArea.transform.position;// ;
+        Vector3 end = CurrentArea.transform.position;
         float t = 0;
-        Debug.Log(t);
 
         while (t < 1)
         {
             yield return null;
             t += Time.deltaTime / time;
             theGO.transform.position = Vector3.Lerp(start, end, t);
-            Debug.Log("CurrentArea = " + CurrentArea + "theGO = " + theGO);
         }
         theGO.transform.position = end;
         theGO.transform.SetParent(CurrentArea.transform, false);

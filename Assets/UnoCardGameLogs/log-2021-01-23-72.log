@@ -1,0 +1,288 @@
+[03:11:12] Top card: 
+[03:11:12] Delt cards
+[03:11:12] Top card: Yellow_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Yellow_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Yellow_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Yellow_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Yellow_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Yellow_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Yellow_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Yellow_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Yellow_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Yellow_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Yellow_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Yellow_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Yellow_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Yellow_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Yellow_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Yellow_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Yellow_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Yellow_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Yellow_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Yellow_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Yellow_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Yellow_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Yellow_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Yellow_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Yellow_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Yellow_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Yellow_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Yellow_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Turns: 1
+[03:11:12] Player: Played Yellow_0(Clone) (UnityEngine.GameObject)
+[03:11:12] Turns: 1
+[03:11:12] DiscardCounter: 1
+[03:11:12] Top card: Yellow_0(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Yellow_0(Clone) (UnityEngine.GameObject)
+[03:11:12] Enemy 1: CardW4(Clone) (UnityEngine.GameObject) (Card 0) did not match
+[03:11:12] Enemy 1: Blue_1(Clone) (UnityEngine.GameObject) (Card 1) did not match
+[03:11:12] Enemy 1: Blue_8(Clone) (UnityEngine.GameObject) (Card 2) did not match
+[03:11:12] Enemy 1: Red_3(Clone) (UnityEngine.GameObject) (Card 3) did not match
+[03:11:12] Enemy 1: Red_9(Clone) (UnityEngine.GameObject) (Card 4) did not match
+[03:11:12] Enemy 1: Red_4(Clone) (UnityEngine.GameObject) (Card 5) did not match
+[03:11:12] Enemy 1: Played Yellow_7(Clone) (UnityEngine.GameObject) (Card 6)
+[03:11:12] Turns: 2
+[03:11:12] Top card: Yellow_7(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Yellow_7(Clone) (UnityEngine.GameObject)
+[03:11:12] Enemy 2: CardW4(Clone) (UnityEngine.GameObject) (Card 0) did not match
+[03:11:12] Enemy 2: Blue_2(Clone) (UnityEngine.GameObject) (Card 1) did not match
+[03:11:12] Enemy 2: Played Yellow_2(Clone) (UnityEngine.GameObject) (Card 2)
+[03:11:12] Turns: 3
+[03:11:12] Top card: Yellow_2(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Yellow_2(Clone) (UnityEngine.GameObject)
+[03:11:12] Enemy 3: Played Red_2(Clone) (UnityEngine.GameObject) (Card 0)
+[03:11:12] Turns: 0
+[03:11:12] Turns: 1
+[03:11:12] Player: Played Red_3(Clone) (UnityEngine.GameObject)
+[03:11:12] Turns: 1
+[03:11:12] DiscardCounter: 1
+[03:11:12] Top card: Red_3(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Red_3(Clone) (UnityEngine.GameObject)
+[03:11:12] Enemy 1: CardW4(Clone) (UnityEngine.GameObject) (Card 0) did not match
+[03:11:12] Enemy 1: Blue_1(Clone) (UnityEngine.GameObject) (Card 1) did not match
+[03:11:12] Enemy 1: Blue_8(Clone) (UnityEngine.GameObject) (Card 2) did not match
+[03:11:12] Enemy 1: Played Red_3(Clone) (UnityEngine.GameObject) (Card 3)
+[03:11:12] Turns: 2
+[03:11:12] Top card: Red_3(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Red_3(Clone) (UnityEngine.GameObject)
+[03:11:12] Enemy 2: CardW4(Clone) (UnityEngine.GameObject) (Card 0) did not match
+[03:11:12] Enemy 2: Blue_2(Clone) (UnityEngine.GameObject) (Card 1) did not match
+[03:11:12] Enemy 2: Played Red_4(Clone) (UnityEngine.GameObject) (Card 2)
+[03:11:12] Turns: 3
+[03:11:12] Top card: Red_4(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Red_4(Clone) (UnityEngine.GameObject)
+[03:11:12] Enemy 3: Blue_D(Clone) (UnityEngine.GameObject) (Card 0) did not match
+[03:11:12] Enemy 3: Green_5(Clone) (UnityEngine.GameObject) (Card 1) did not match
+[03:11:12] Enemy 3: Green_7(Clone) (UnityEngine.GameObject) (Card 2) did not match
+[03:11:12] Enemy 3: Blue_S(Clone) (UnityEngine.GameObject) (Card 3) did not match
+[03:11:12] Enemy 3: Yellow_7(Clone) (UnityEngine.GameObject) (Card 4) did not match
+[03:11:12] Top Deck Card:Green_8(Clone) (UnityEngine.GameObject)
+[03:11:12] Enemy 3: Drew Green_8(Clone) (UnityEngine.GameObject)
+[03:11:12] Enemy 3: Drew 1 cards
+[03:11:12] Enemy 3: Does not have a match
+[03:11:12] Top card: Red_4(Clone) (UnityEngine.GameObject)
+[03:11:12] Enemy 3: Blue_D(Clone) (UnityEngine.GameObject) (Card 0) did not match
+[03:11:12] Enemy 3: Green_5(Clone) (UnityEngine.GameObject) (Card 1) did not match
+[03:11:12] Enemy 3: Green_7(Clone) (UnityEngine.GameObject) (Card 2) did not match
+[03:11:12] Enemy 3: Blue_S(Clone) (UnityEngine.GameObject) (Card 3) did not match
+[03:11:12] Enemy 3: Yellow_7(Clone) (UnityEngine.GameObject) (Card 4) did not match
+[03:11:12] Enemy 3: Yellow_R(Clone) (UnityEngine.GameObject) (Card 5) did not match
+[03:11:12] Top Deck Card:Green_6(Clone) (UnityEngine.GameObject)
+[03:11:12] Enemy 3: Drew Green_6(Clone) (UnityEngine.GameObject)
+[03:11:12] Enemy 3: Drew 1 cards
+[03:11:12] Enemy 3: Does not have a match
+[03:11:12] Top card: Red_4(Clone) (UnityEngine.GameObject)
+[03:11:12] Enemy 3: Blue_D(Clone) (UnityEngine.GameObject) (Card 0) did not match
+[03:11:12] Enemy 3: Green_5(Clone) (UnityEngine.GameObject) (Card 1) did not match
+[03:11:12] Enemy 3: Green_7(Clone) (UnityEngine.GameObject) (Card 2) did not match
+[03:11:12] Enemy 3: Blue_S(Clone) (UnityEngine.GameObject) (Card 3) did not match
+[03:11:12] Enemy 3: Yellow_7(Clone) (UnityEngine.GameObject) (Card 4) did not match
+[03:11:12] Enemy 3: Yellow_R(Clone) (UnityEngine.GameObject) (Card 5) did not match
+[03:11:12] Enemy 3: Green_8(Clone) (UnityEngine.GameObject) (Card 6) did not match
+[03:11:12] Top Deck Card:Red_D(Clone) (UnityEngine.GameObject)
+[03:11:12] Enemy 3: Drew Red_D(Clone) (UnityEngine.GameObject)
+[03:11:12] Enemy 3: Drew 1 cards
+[03:11:12] Enemy 3: Does not have a match
+[03:11:12] Top card: Red_4(Clone) (UnityEngine.GameObject)
+[03:11:12] Enemy 3: Blue_D(Clone) (UnityEngine.GameObject) (Card 0) did not match
+[03:11:12] Enemy 3: Green_5(Clone) (UnityEngine.GameObject) (Card 1) did not match
+[03:11:12] Enemy 3: Green_7(Clone) (UnityEngine.GameObject) (Card 2) did not match
+[03:11:12] Enemy 3: Blue_S(Clone) (UnityEngine.GameObject) (Card 3) did not match
+[03:11:12] Enemy 3: Yellow_7(Clone) (UnityEngine.GameObject) (Card 4) did not match
+[03:11:12] Enemy 3: Yellow_R(Clone) (UnityEngine.GameObject) (Card 5) did not match
+[03:11:12] Enemy 3: Green_8(Clone) (UnityEngine.GameObject) (Card 6) did not match
+[03:11:12] Enemy 3: Green_6(Clone) (UnityEngine.GameObject) (Card 7) did not match
+[03:11:12] Enemy 3: Played Red_D(Clone) (UnityEngine.GameObject) (Card 8)
+[03:11:12] Turns: 0
+[03:11:12] Turns: 0
+[03:11:12] Turns: 0
+[03:11:12] Turns: 0
+[03:11:12] Turns: 1
+[03:11:12] Player: Played Red_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Turns: 1
+[03:11:12] DiscardCounter: 1
+[03:11:12] Top card: Red_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Red_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Enemy 1: CardW4(Clone) (UnityEngine.GameObject) (Card 0) did not match
+[03:11:12] Enemy 1: Played Blue_1(Clone) (UnityEngine.GameObject) (Card 1)
+[03:11:12] Turns: 2
+[03:11:12] Top card: Blue_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Blue_1(Clone) (UnityEngine.GameObject)
+[03:11:12] Enemy 2: CardW4(Clone) (UnityEngine.GameObject) (Card 0) did not match
+[03:11:12] Enemy 2: Played Blue_2(Clone) (UnityEngine.GameObject) (Card 1)
+[03:11:12] Turns: 3
+[03:11:12] Top card: Blue_2(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Blue_2(Clone) (UnityEngine.GameObject)
+[03:11:12] Enemy 3: Played Blue_D(Clone) (UnityEngine.GameObject) (Card 0)
+[03:11:12] Turns: 0
+[03:11:12] Turns: 1
+[03:11:12] Player: Played Blue_S(Clone) (UnityEngine.GameObject)
+[03:11:12] Turns: 1
+[03:11:12] DiscardCounter: 1
+[03:11:12] Top card: Blue_S(Clone) (UnityEngine.GameObject)
+[03:11:12] Skipped Enemy 1
+[03:11:12] Top card: Blue_S(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Blue_S(Clone) (UnityEngine.GameObject)
+[03:11:12] Enemy 2: CardW4(Clone) (UnityEngine.GameObject) (Card 0) did not match
+[03:11:12] Enemy 2: CardW4(Clone) (UnityEngine.GameObject) (Card 1) did not match
+[03:11:12] Enemy 2: Green_3(Clone) (UnityEngine.GameObject) (Card 2) did not match
+[03:11:12] Enemy 2: Played Blue_6(Clone) (UnityEngine.GameObject) (Card 3)
+[03:11:12] Turns: 3
+[03:11:12] Top card: Blue_6(Clone) (UnityEngine.GameObject)
+[03:11:12] Top card: Blue_6(Clone) (UnityEngine.GameObject)
+[03:11:12] Enemy 3: Green_5(Clone) (UnityEngine.GameObject) (Card 0) did not match
+[03:11:12] Enemy 3: Green_7(Clone) (UnityEngine.GameObject) (Card 1) did not match
+[03:11:12] Enemy 3: Played Blue_S(Clone) (UnityEngine.GameObject) (Card 2)
+[03:11:12] Turns: 0
+[06:18:14] Top card: 
+[06:18:14] Delt cards
+[06:18:14] Top card: 
+[06:18:14] Top card: 
+[06:18:14] Top card: 
+[06:18:14] Top card: 
+[06:18:14] Top card: 
+[06:18:14] Top card: 
+[06:18:14] Top card: 
+[06:18:14] Top card: 
+[06:18:14] Top card: 
+[06:18:14] Top card: 
+[06:18:14] Top card: 
+[06:18:14] Top card: 
+[06:18:14] Top card: 
+[06:18:14] Top card: 
+[06:18:14] Top card: 
+[06:18:14] Top card: 
+[06:18:14] Top card: 
+[06:18:14] Top card: 
+[06:18:14] Top card: 
+[06:18:14] Top card: 
+[06:18:14] Player: Played CardW(Clone) (UnityEngine.GameObject)
+[06:18:14] Turns: 1
+[06:18:14] Turns: 1
+[06:18:14] Top card: CardW(Clone) (UnityEngine.GameObject)
+[06:18:14] Top card: CardW(Clone) (UnityEngine.GameObject)
+[06:18:14] Enemy 1: CardW4(Clone) (UnityEngine.GameObject) (Card 0) did not match
+[06:18:14] Enemy 1: CardW4(Clone) (UnityEngine.GameObject) (Card 1) did not match
+[06:18:14] Enemy 1: Played CardW(Clone) (UnityEngine.GameObject) (Card 2)
+[06:18:14] Turns: 2
+[06:18:14] Top card: CardW(Clone) (UnityEngine.GameObject)
+[06:18:14] Top card: CardW(Clone) (UnityEngine.GameObject)
+[06:18:14] Enemy 2: CardW4(Clone) (UnityEngine.GameObject) (Card 0) did not match
+[06:18:14] Enemy 2: Played CardW(Clone) (UnityEngine.GameObject) (Card 1)
+[06:18:14] Turns: 3
+[06:18:14] Top card: CardW(Clone) (UnityEngine.GameObject)
+[06:18:14] Top card: CardW(Clone) (UnityEngine.GameObject)
+[06:18:14] Enemy 3: CardW4(Clone) (UnityEngine.GameObject) (Card 0) did not match
+[06:18:14] Enemy 3: Played CardW(Clone) (UnityEngine.GameObject) (Card 1)
+[06:18:14] Turns: 0
+[06:18:23] Top card: 
+[07:48:32] Top card: 
+[07:48:32] Delt cards
+[07:48:32] Top card: Red_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Red_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Red_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Red_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Red_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Red_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Red_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Red_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Red_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Red_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Red_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Red_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Red_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Red_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Red_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Red_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Red_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Red_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Red_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Red_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Red_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Red_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Red_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Red_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Red_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Red_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Red_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Red_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Player: Played Red_7(Clone) (UnityEngine.GameObject)
+[07:48:32] Turns: 1
+[07:48:32] Turns: 1
+[07:48:32] Top card: Red_7(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Red_7(Clone) (UnityEngine.GameObject)
+[07:48:32] Enemy 1: Green_3(Clone) (UnityEngine.GameObject) (Card 0) did not match
+[07:48:32] Enemy 1: Played Blue_7(Clone) (UnityEngine.GameObject) (Card 1)
+[07:48:32] Turns: 2
+[07:48:32] Top card: Blue_7(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Blue_7(Clone) (UnityEngine.GameObject)
+[07:48:32] Enemy 2: Yellow_R(Clone) (UnityEngine.GameObject) (Card 0) did not match
+[07:48:32] Enemy 2: CardW(Clone) (UnityEngine.GameObject) (Card 1) did not match
+[07:48:32] Enemy 2: Played Blue_D(Clone) (UnityEngine.GameObject) (Card 2)
+[07:48:32] Turns: 3
+[07:48:32] Top card: Blue_D(Clone) (UnityEngine.GameObject)
+[07:48:32] Top Deck Card:Green_1(Clone) (UnityEngine.GameObject)
+[07:48:32] Enemy 3: Drew Green_1(Clone) (UnityEngine.GameObject)
+[07:48:32] Top Deck Card:CardW(Clone) (UnityEngine.GameObject)
+[07:48:32] Enemy 3: Drew CardW(Clone) (UnityEngine.GameObject)
+[07:48:32] Enemy 3: Drew 2 cards
+[07:48:32] Skipped Enemy 3
+[07:48:32] Player: Played CardW(Clone) (UnityEngine.GameObject)
+[07:48:32] Wild Menu shown
+[07:48:32] Turns: 1
+[07:48:32] Turns: 1
+[07:48:32] Player called blue
+[07:48:32] Wild Menu hidden
+[07:48:32] Top card: CardW(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: CardW(Clone) (UnityEngine.GameObject)
+[07:48:32] Enemy 1: Green_3(Clone) (UnityEngine.GameObject) (Card 0) did not match
+[07:48:32] Enemy 1: Played Blue_3(Clone) (UnityEngine.GameObject) (Card 1)
+[07:48:32] Turns: 2
+[07:48:32] Top card: Blue_3(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Blue_3(Clone) (UnityEngine.GameObject)
+[07:48:32] Enemy 2: Yellow_R(Clone) (UnityEngine.GameObject) (Card 0) did not match
+[07:48:32] Enemy 2: CardW(Clone) (UnityEngine.GameObject) (Card 1) did not match
+[07:48:32] Enemy 2: Played Blue_S(Clone) (UnityEngine.GameObject) (Card 2)
+[07:48:32] Turns: 3
+[07:48:32] Top card: Blue_S(Clone) (UnityEngine.GameObject)
+[07:48:32] Skipped Enemy 3
+[07:48:32] Player: Played Blue_6(Clone) (UnityEngine.GameObject)
+[07:48:32] Turns: 1
+[07:48:32] Turns: 1
+[07:48:32] Top card: Blue_6(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Blue_6(Clone) (UnityEngine.GameObject)
+[07:48:32] Enemy 1: Green_3(Clone) (UnityEngine.GameObject) (Card 0) did not match
+[07:48:32] Enemy 1: Played Blue_2(Clone) (UnityEngine.GameObject) (Card 1)
+[07:48:32] Turns: 2
+[07:48:32] Top card: Blue_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Blue_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Enemy 2: Yellow_R(Clone) (UnityEngine.GameObject) (Card 0) did not match
+[07:48:32] Enemy 2: CardW(Clone) (UnityEngine.GameObject) (Card 1) did not match
+[07:48:32] Enemy 2: Green_8(Clone) (UnityEngine.GameObject) (Card 2) did not match
+[07:48:32] Enemy 2: Played Green_2(Clone) (UnityEngine.GameObject) (Card 3)
+[07:48:32] Turns: 3
+[07:48:32] Top card: Green_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Top card: Green_2(Clone) (UnityEngine.GameObject)
+[07:48:32] Enemy 3: Red_1(Clone) (UnityEngine.GameObject) (Card 0) did not match
+[07:48:32] Enemy 3: Played Green_D(Clone) (UnityEngine.GameObject) (Card 1)
+[07:48:32] Turns: 0

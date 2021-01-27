@@ -1,0 +1,21 @@
+[08:11:08] Top card: 
+[08:11:08] Delt cards
+[08:11:08] Player: Played Green_6
+[08:11:08] Made it this far (TurnManager)
+[08:11:08] Turns: 1
+[08:11:08] Turns: 1
+[08:11:08] Top card: Green_6(Clone) (UnityEngine.GameObject)
+[08:11:08] Top card: Green_6(Clone) (CardProperties)
+[08:11:08] Enemy 1: Played Green_0(Clone) (UnityEngine.GameObject) (Card 0)
+[08:11:08] Turns: 2
+[08:11:08] Top card: Green_0(Clone) (UnityEngine.GameObject)
+[08:11:08] Top card: Green_0(Clone) (CardProperties)
+[08:11:08] Enemy 2: Yellow_5(Clone) (UnityEngine.GameObject) (Card 0) did not match
+[08:11:08] Enemy 2: Played Green_5(Clone) (UnityEngine.GameObject) (Card 1)
+[08:11:08] Turns: 3
+[08:11:08] Top card: Green_5(Clone) (UnityEngine.GameObject)
+[08:11:08] Top card: Green_5(Clone) (CardProperties)
+[08:11:08] Enemy 3: Yellow_D(Clone) (UnityEngine.GameObject) (Card 0) did not match
+[08:11:08] Enemy 3: Yellow_D(Clone) (UnityEngine.GameObject) (Card 1) did not match
+[08:11:08] Enemy 3: Played Green_S(Clone) (UnityEngine.GameObject) (Card 2)
+[08:11:08] Turns: 0

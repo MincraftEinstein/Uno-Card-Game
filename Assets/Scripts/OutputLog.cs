@@ -13,7 +13,7 @@ public class OutputLog : MonoBehaviour
     private void Start()
     {
         num = UnityEngine.Random.Range(0, 100);
-        path = "C:\\Users\\Owner\\Documents\\UnoCardGameLogs\\log-" + date.ToString("yyyy-MM-dd-" + num) + ".log";
+        path = Application.dataPath + "\\UnoCardGameLogs\\log-" + date.ToString("yyyy-MM-dd-" + num) + ".log";
     }
 
     public static void WriteToOutput(object output)

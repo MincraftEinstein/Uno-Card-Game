@@ -1,0 +1,28 @@
+[05:22:00] Top card: 
+[05:22:00] Delt cards
+[05:22:00] Player: Played CardW4(Clone) (UnityEngine.GameObject)
+[05:22:00] Wild Menu shown
+[05:22:00] Turns: 1
+[05:22:00] Turns: 1
+[05:22:00] Player called red
+[05:22:00] Wild Menu hidden
+[05:22:00] Top card: CardW4(Clone) (UnityEngine.GameObject)
+[05:22:00] Top Deck Card:Red_D(Clone) (UnityEngine.GameObject)
+[05:22:00] Enemy 1: Drew Red_D(Clone) (UnityEngine.GameObject)
+[05:22:00] Top Deck Card:Red_D(Clone) (UnityEngine.GameObject)
+[05:22:00] Enemy 1: Drew Red_D(Clone) (UnityEngine.GameObject)
+[05:22:00] Top Deck Card:Red_D(Clone) (UnityEngine.GameObject)
+[05:22:00] Enemy 1: Drew Red_D(Clone) (UnityEngine.GameObject)
+[05:22:00] Top Deck Card:Red_D(Clone) (UnityEngine.GameObject)
+[05:22:00] Enemy 1: Drew Red_D(Clone) (UnityEngine.GameObject)
+[05:22:00] Enemy 1: Drew 4 cards
+[05:22:00] Skipped Enemy 1
+[05:22:00] Top card: CardW4(Clone) (UnityEngine.GameObject)
+[05:22:00] Top card: CardW4(Clone) (CardProperties)
+[05:22:00] Enemy 2: Played Red_3(Clone) (UnityEngine.GameObject) (Card 0)
+[05:22:00] Turns: 3
+[05:22:00] Top card: Red_3(Clone) (UnityEngine.GameObject)
+[05:22:00] Top card: Red_3(Clone) (CardProperties)
+[05:22:00] Enemy 3: Green_2(Clone) (UnityEngine.GameObject) (Card 0) did not match
+[05:22:00] Enemy 3: Played Blue_3(Clone) (UnityEngine.GameObject) (Card 1)
+[05:22:00] Turns: 0

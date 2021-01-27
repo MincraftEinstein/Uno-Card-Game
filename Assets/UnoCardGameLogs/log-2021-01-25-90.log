@@ -1,0 +1,24 @@
+[06:38:56] Top card: 
+[06:38:56] Delt cards
+[06:38:56] Player: Played Red_D
+[06:38:56] Player: Played Red_D(Clone) (UnityEngine.GameObject)
+[06:38:56] Turns: 1
+[06:38:56] Turns: 1
+[06:38:56] Top card: Red_D(Clone) (UnityEngine.GameObject)
+[06:38:56] Top Deck Card:Green_6(Clone) (UnityEngine.GameObject)
+[06:38:56] Enemy 1: Drew Green_6(Clone) (UnityEngine.GameObject)
+[06:38:56] Top Deck Card:Green_6(Clone) (UnityEngine.GameObject)
+[06:38:56] Enemy 1: Drew Green_6(Clone) (UnityEngine.GameObject)
+[06:38:56] Enemy 1: Drew 2 cards
+[06:38:56] Skipped Enemy 1
+[06:38:56] Top card: Red_D(Clone) (UnityEngine.GameObject)
+[06:38:56] Top card: Red_D(Clone) (CardProperties)
+[06:38:56] Enemy 2: Green_0(Clone) (UnityEngine.GameObject) (Card 0) did not match
+[06:38:56] Enemy 2: Played Red_2(Clone) (UnityEngine.GameObject) (Card 1)
+[06:38:56] Turns: 3
+[06:38:56] Top card: Red_2(Clone) (UnityEngine.GameObject)
+[06:38:56] Top card: Red_2(Clone) (CardProperties)
+[06:38:56] Enemy 3: Blue_1(Clone) (UnityEngine.GameObject) (Card 0) did not match
+[06:38:56] Enemy 3: Blue_3(Clone) (UnityEngine.GameObject) (Card 1) did not match
+[06:38:56] Enemy 3: Played Yellow_2(Clone) (UnityEngine.GameObject) (Card 2)
+[06:38:56] Turns: 0
