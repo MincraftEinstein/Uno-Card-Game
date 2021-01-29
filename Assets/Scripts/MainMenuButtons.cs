@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuButtons : MonoBehaviour
 {
+    private DrawCards drawCards;
 
     public void LoadGameScene()
     {

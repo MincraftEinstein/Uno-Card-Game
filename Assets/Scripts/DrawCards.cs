@@ -63,7 +63,6 @@ public class DrawCards : MonoBehaviour
     //---------------------------------------
     public GameObject Wild;
     public GameObject WildDraw4;
-    public static GameObject CurrentPlayedCard;
     public GameObject PlayerArea;
     public GameObject EnemyArea1;
     public GameObject EnemyArea2;
@@ -73,6 +72,7 @@ public class DrawCards : MonoBehaviour
     public GameObject Button;
     public GameObject Card;
     public Button button;
+    public static GameObject CurrentPlayedCard;
 
     public static List<GameObject> AllCards = new List<GameObject>();
     public static List<GameObject> RemainingCards = new List<GameObject>();
@@ -157,26 +157,37 @@ public class DrawCards : MonoBehaviour
             AllCards.Add(Yellow_S);
         }
 
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < 4; i++)
         {
             AllCards.Add(Wild);
             AllCards.Add(WildDraw4);
+        }
+
+        // TESTING ONLY
+        for (int i = 0; i < 4; i++)
+        {
+            AllCards.Add(Wild);
+            AllCards.Add(WildDraw4);
+            AllCards.Add(Blue_D);
+            AllCards.Add(Red_D);
+            AllCards.Add(Yellow_D);
+            AllCards.Add(Green_D);
         }
     }
 
     public void Shuffle()
     {
-        List<GameObject> tmp = new List<GameObject>();
+        List<GameObject> ShuffleList = new List<GameObject>();
 
         int max = AllCards.Count;
         while (max > 0)
         {
             int offset = UnityEngine.Random.Range(0, max);
-            tmp.Add(AllCards[offset]);
+            ShuffleList.Add(AllCards[offset]);
             AllCards.RemoveAt(offset);
             max -= 1;
         }
-        AllCards = tmp;
+        AllCards = ShuffleList;
     }
 
     public void onClick()
@@ -190,6 +201,7 @@ public class DrawCards : MonoBehaviour
                 GameObject.Find("MenuBackground").SetActive(false);
                 gameObject.transform.position = new Vector3(-10000, 0, 0);
             }
+
             // Destroy any remaining cards before dealing new ones.
             for (int i = 0; i < PlayerArea.transform.childCount; i++)
                 Destroy(PlayerArea.transform.GetChild(i).gameObject);
@@ -209,6 +221,7 @@ public class DrawCards : MonoBehaviour
                 //Put the remainder of the deck in the DeckZone.
                 Card = Instantiate(AllCards[i], new Vector3(0, 0, 0), Quaternion.identity);
                 Card.transform.SetParent(DeckZone.transform, false);
+                //Card.GetComponent<CardProperties>().HasAuthority = false;
                 RemainingCards.Add(Card);
 
             }
@@ -236,7 +249,7 @@ public class DrawCards : MonoBehaviour
                     }
                     RemainingCards.Remove(Card);
                     PlayerCards.Add(Card);
-                    OutputLog.WriteToOutput("player cards got" + Card);
+                    OutputLog.WriteToOutput("Player received: " + Card.name);
 
                 }
                 else if (iP == 1)
@@ -251,7 +264,7 @@ public class DrawCards : MonoBehaviour
                     }
                     RemainingCards.Remove(Card);
                     EnemyCards1.Add(Card);
-                    OutputLog.WriteToOutput("enemy1 cards got" + Card);
+                    OutputLog.WriteToOutput("Enemy1 received: " + Card.name);
                 }
                 else if (iP == 2)
                 {
@@ -265,7 +278,7 @@ public class DrawCards : MonoBehaviour
                     }
                     RemainingCards.Remove(Card);
                     EnemyCards2.Add(Card);
-                    OutputLog.WriteToOutput("enemy2 cards got" + Card);
+                    OutputLog.WriteToOutput("Enemy2 received: " + Card.name);
                 }
                 else if (iP == 3)
                 {
@@ -279,7 +292,7 @@ public class DrawCards : MonoBehaviour
                     }
                     RemainingCards.Remove(Card);
                     EnemyCards3.Add(Card);
-                    OutputLog.WriteToOutput("enemy3 cards got" + Card);
+                    OutputLog.WriteToOutput("Enemy3 received: " + Card.name);
                 }
             }
         }
@@ -294,8 +307,12 @@ public class DrawCards : MonoBehaviour
         }
         RemainingCards.Remove(Card);
         CurrentPlayedCard = Card;
+        OutputLog.WriteToOutput("DiscardPile received: " + Card.name);
+        yield return new WaitForSeconds(secRate);
 
-        // Gives the player authority over there cards
+        CurrentPlayedCard.GetComponent<DragDrop>().PlayerLogic(CurrentPlayedCard.GetComponent<CardProperties>());
+
+        //Gives the player authority over their cards
         for (int i = 0; i < PlayerCards.Count; i++)
         {
             PlayerCards[i].GetComponent<CardProperties>().HasAuthority = true;
@@ -304,7 +321,7 @@ public class DrawCards : MonoBehaviour
         // Make the button inactive.
         Button.SetActive(false);
 
-        OutputLog.WriteToOutput("Delt cards");
+        OutputLog.WriteToOutput("Dealt cards");
     }
 
     public static IEnumerator MoveTo(GameObject CurrentArea, GameObject theGO, bool isSideways, float time)

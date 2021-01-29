@@ -17,15 +17,14 @@ public class TurnManager : MonoBehaviour
     public GameObject EnemyArea3;
     public GameObject DiscardArea;
     public GameObject WildMenu;
-    private GameObject Canvas;
+    public DragDrop dragDrop;
+    
     private List<GameObject> PlayableCards = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
     {
         DiscardArea = GameObject.Find("DiscardArea");
-        Canvas = GameObject.Find("Canvas");
-        OutputLog.WriteToOutput("Top card: " + DrawCards.CurrentPlayedCard);
     }
 
 //------Player Code---------------------------------------------------------------------------------------------------------------------------
@@ -36,20 +35,23 @@ public class TurnManager : MonoBehaviour
         {
             if (TurnResult == "Skip")
             {
+                OutputLog.WriteToOutput("Hello from PlayerManager.Skip");
                 TurnResult = "normal";
-                IncrementTurns();
+                StartCoroutine(IncrementTurns());
             }
             else if (TurnResult == "Draw2")
             {
-                DrawCardsFromDeck(DrawCards.PlayerCards, PlayerArea, "Player", 2);
+                OutputLog.WriteToOutput("Hello from PlayerManager.Draw2");
+                StartCoroutine(DrawCardsFromDeck(DrawCards.PlayerCards, PlayerArea, "Player", 2));
                 TurnResult = "normal";
-                IncrementTurns();
+                StartCoroutine(IncrementTurns());
             }
             else if (TurnResult == "WildDraw4")
             {
-                DrawCardsFromDeck(DrawCards.PlayerCards, PlayerArea, "Player", 4);
+                OutputLog.WriteToOutput("Hello from PlayerManager.WildDraw4");
+                StartCoroutine(DrawCardsFromDeck(DrawCards.PlayerCards, PlayerArea, "Player", 4));
                 TurnResult = "normal";
-                IncrementTurns();
+                StartCoroutine(IncrementTurns());
             }
             else
             {
@@ -60,31 +62,12 @@ public class TurnManager : MonoBehaviour
 
                 GameObject TopCard = DrawCards.CurrentPlayedCard;
                 CardProperties TopCardProperties = TopCard.GetComponent<CardProperties>();
-                if (TopCardProperties.cardType == "Skip")
+                if (HasPlayableCard(DrawCards.PlayerCards, TopCardProperties) == false)
                 {
-                    TurnResult = "Skip";
-                    return;
+                    int DeckTopCardNum = DrawCards.RemainingCards.Count - 1;
+                    GameObject DeckTopCard = DrawCards.RemainingCards[DeckTopCardNum];
+                    DeckTopCard.GetComponent<CardProperties>().HasAuthority = true;
                 }
-                else if (TopCardProperties.cardType == "Draw2")
-                {
-                    TurnResult = "Draw2";
-                    return;
-                }
-                else if (TopCardProperties.cardType == "Reverse")
-                {
-                    IsReversed = !IsReversed;
-                    TurnResult = "Reverse";
-                    return;
-                }
-                else if (TopCardProperties.cardType == "Wild" || TopCardProperties.cardType == "WildDraw4")
-                {
-                    isWildMenuShown = true;
-                    Instantiate(WildMenu, Canvas.transform);
-                    OutputLog.WriteToOutput("Wild Menu shown");
-                    TurnResult = "normal";
-                    return;
-                }
-                IncrementTurns();
             }
         }
         else
@@ -96,48 +79,6 @@ public class TurnManager : MonoBehaviour
         }
     }
 
-    //public void TestPlayerCard()
-    //{
-
-    //    OutputLog.WriteToOutput("Made it this far (TurnManager)");
-    //    CardProperties TopCardProperties = DrawCards.CurrentPlayedCard.GetComponent<CardProperties>();
-    //    if (Turns == 0)
-    //    {
-    //        for (int i = 0; i < DrawCards.PlayerCards.Count; i++)
-    //        {
-    //            DrawCards.PlayerCards[i].GetComponent<CardProperties>().HasAuthority = true;
-    //        }
-    //        if (TopCardProperties.cardType == "Reverse")
-    //        {
-    //            TopCardProperties.cardType = "Reversed";
-    //            IsReversed = !IsReversed;
-    //        }
-    //        else if (TopCardProperties.cardType == "Skip")
-    //        {
-    //            SkipPerson(TopCardProperties, DrawCards.PlayerCards);
-    //        }
-    //        else if (TopCardProperties.cardType == "Draw2")
-    //        {
-    //            DrawCardsFromDeck(DrawCards.PlayerCards, PlayerArea, "Player", 2);
-    //            SkipPerson(TopCardProperties, DrawCards.PlayedCards);
-    //        }
-    //        IncrementTurns();
-    //    }
-    //    else if (Turns == 3)
-    //    {
-    //        if (TopCardProperties.cardType == "Wild" || TopCardProperties.cardType == "WildDraw4")
-    //        {
-    //            isWildMenuShown = true;
-    //            Instantiate(WildMenu, Canvas.transform);
-    //            OutputLog.WriteToOutput("Wild Menu shown");
-    //            if (TopCardProperties.cardType == "WildDraw4")
-    //            {
-    //                DrawCardsFromDeck(DrawCards.PlayerCards, PlayerArea, "Player", 4);
-    //            }
-    //        }
-    //    }
-    //}
-
 //------AI Code---------------------------------------------------------------------------------------------------------------------------
 
     private bool HasPlayableCard(List<GameObject> Hand, CardProperties TopCardProperties)
@@ -148,33 +89,25 @@ public class TurnManager : MonoBehaviour
             CardProperties CardProperties = Card.GetComponent<CardProperties>();
             if (CardProperties.cardColor == TopCardProperties.cardColor || CardProperties.cardType == TopCardProperties.cardType || CardProperties.cardType == "Wild" || CardProperties.cardType == "WildDraw4")
             {
-                //PlayableCards.Add(Card);
                 return true;
             }
         }
         return false;
     }
 
-    private void PlayCard(List<GameObject> Hand, CardProperties TopCardProperties)
+    private void PlayCard(List<GameObject> Hand, CardProperties TopCardProperties, string Name)
     {
         //Sort the list based on cardScore
         //PlayableCards.Sort((x, y) => x.GetComponent<CardProperties>().cardScore.CompareTo(y.GetComponent<CardProperties>().cardScore));
-
-        for (int i = 0; i > Hand.Count; i++)
+        for (int i = 0; i < Hand.Count; i++)
         {
             GameObject Card = Hand[i];
             CardProperties CardProperties = Card.GetComponent<CardProperties>();
             if (CardProperties.cardColor == TopCardProperties.cardColor || CardProperties.cardType == TopCardProperties.cardType || CardProperties.cardType == "Wild" || CardProperties.cardType == "WildDraw4")
             {
                 PlayableCards.Add(Card);
-                OutputLog.WriteToOutput(Hand + " has add " + Card + "to playable cards");
+                OutputLog.WriteToOutput(Card + " was added to PlayableCards");
             }
-        }
-
-        //Temporary
-        for (int i = 0; i < PlayableCards.Count; i++)
-        {
-            OutputLog.WriteToOutput("PlayableCards[" + i + "]: " + PlayableCards[i].GetComponent<CardProperties>().cardType);
         }
 
         //Look for a Draw2 card.
@@ -182,9 +115,9 @@ public class TurnManager : MonoBehaviour
         {
             if (PlayableCards[i].GetComponent<CardProperties>().cardType == "Draw2")
             {
-                StartCoroutine(MoveCard(PlayableCards[i], Hand, DiscardArea));
+                WhenCardPlayed(Hand, i, Name);
                 TurnResult = "Draw2";
-                return;
+                goto PlayCardEnd;
             }
         }
 
@@ -193,9 +126,9 @@ public class TurnManager : MonoBehaviour
         {
             if (PlayableCards[i].GetComponent<CardProperties>().cardType == "Skip")
             {
-                StartCoroutine(MoveCard(PlayableCards[i], Hand, DiscardArea));
+                WhenCardPlayed(Hand, i, Name);
                 TurnResult = "Skip";
-                return;
+                goto PlayCardEnd;
             }
         }
         //Look for a Reverse card.
@@ -203,10 +136,10 @@ public class TurnManager : MonoBehaviour
         {
             if (PlayableCards[i].GetComponent<CardProperties>().cardType == "Reverse")
             {
-                StartCoroutine(MoveCard(PlayableCards[i], Hand, DiscardArea));
+                WhenCardPlayed(Hand, i, Name);
                 IsReversed = !IsReversed;
                 TurnResult = "Reverse";
-                return;
+                goto PlayCardEnd;
             }
         }
         //Look for a Number card.
@@ -214,151 +147,101 @@ public class TurnManager : MonoBehaviour
         {
             if (PlayableCards[i].GetComponent<CardProperties>().cardScore <= 9)
             {
-                StartCoroutine(MoveCard(PlayableCards[i], Hand, DiscardArea));
-                TurnResult = "NumberCard";
-                return;
+                WhenCardPlayed(Hand, i, Name);
+                TurnResult = "NumberCard";   
+                goto PlayCardEnd;
             }
         }
+        PlayCardEnd:
         PlayableCards.Clear();
-        IncrementTurns();
+        CleanupDiscardArea();
+        StartCoroutine(IncrementTurns());
     }
 
+    private void WhenCardPlayed(List<GameObject> Hand, int i, string Name)
+    {
+        StartCoroutine(MoveCard(PlayableCards[i], Hand, DiscardArea));
+        if (Hand != DrawCards.EnemyCards2 || Hand != DrawCards.PlayerCards)
+        {
+            if (Hand != DrawCards.EnemyCards2 || Hand != DrawCards.PlayerCards)
+            {
+                PlayableCards[i].transform.Rotate(Vector3.forward * 90);
+            }
+        }
+        DrawCards.PlayedCards.Add(PlayableCards[i]);
+        Hand.Remove(PlayableCards[i]);
+        DrawCards.CurrentPlayedCard = PlayableCards[i];
+        OutputLog.WriteToOutput(Name + ": Played " + PlayableCards[i].name);
+    }
+
+    // This method determines what the current player will do
     private void DeterminePlay(List<GameObject> enemyHand, GameObject enemyArea, string enemyName)
-    {   // This method determines what the current player will do
+    {
         GameObject TopCard = DrawCards.CurrentPlayedCard;
         CardProperties TopCardProperties = TopCard.GetComponent<CardProperties>();
         OutputLog.WriteToOutput("Top card: " + TopCard);
         if (TurnResult == "Skip")
         {
             TurnResult = "normal";
-            IncrementTurns();
+            StartCoroutine(IncrementTurns());
         }
         else if (TurnResult == "Draw2")
         {
-            DrawCardsFromDeck(enemyHand, enemyArea, enemyName, 2);
+            StartCoroutine(DrawCardsFromDeck(enemyHand, enemyArea, enemyName, 2));
             TurnResult = "normal";
-            IncrementTurns();
+            StartCoroutine(IncrementTurns());
         }
         else if (TurnResult == "WildDraw4")
         {
-            DrawCardsFromDeck(enemyHand, enemyArea, enemyName, 4);
+            StartCoroutine(DrawCardsFromDeck(enemyHand, enemyArea, enemyName, 4));
             TurnResult = "normal";
-            IncrementTurns();
+            StartCoroutine(IncrementTurns());
         }
         else
         {
-            //HasMatch(enemyHand, enemyArea, enemyName);
             if (HasPlayableCard(enemyHand, TopCardProperties) == true)
             {
-                PlayCard(enemyHand, TopCardProperties);
+                PlayCard(enemyHand, TopCardProperties, enemyName);
+                OutputLog.WriteToOutput("HasPlayableCard = true");
             }
             else
             {
-                DrawCardsFromDeck(enemyHand, enemyArea, enemyName, 1);
-                PlayCard(enemyHand, TopCardProperties);
+                StartCoroutine(DrawCardsFromDeck(enemyHand, enemyArea, enemyName, 1));
+                PlayCard(enemyHand, TopCardProperties, enemyName);
+                OutputLog.WriteToOutput("HasPlayableCard = false");
             }
         }
     }
 
-    //private void SkipPerson(CardProperties Card, List<GameObject> Hand)
-    //{
-    //    if (Hand == DrawCards.PlayerCards)
-    //    {
-    //        OutputLog.WriteToOutput("Skipped Player");
-    //        Card.cardType = "Skipped";
-    //        Turns = 1;
-    //    }
-    //    if (Hand == DrawCards.EnemyCards1)
-    //    {
-    //        OutputLog.WriteToOutput("Skipped Enemy 1");
-    //        Card.cardType = "Skipped";
-    //        Turns = 2;
-
-    //    }
-    //    if (Hand == DrawCards.EnemyCards2)
-    //    {
-    //        OutputLog.WriteToOutput("Skipped Enemy 2");
-    //        Card.cardType = "Skipped";
-    //        Turns = 3;
-    //    }
-    //    if (Hand == DrawCards.EnemyCards3)
-    //    {
-    //        OutputLog.WriteToOutput("Skipped Enemy 3");
-    //        Card.cardType = "Skipped";
-    //        Turns = 0;
-    //    }
-    //}
-
-    //private void HasMatch(List<GameObject> enemyHand, GameObject enemyArea, string enemyName)
-    //{
-    //    CardProperties TopCardProperties = DrawCards.CurrentPlayedCard.GetComponent<CardProperties>();
-    //    OutputLog.WriteToOutput("Top card: " + TopCardProperties);
-    //    bool HasFoundMatch = false;
-    //    for (int i = 0; i < enemyHand.Count; i++)
-    //    {
-    //        GameObject Card = enemyHand[i];
-    //        CardProperties CardProperties = Card.GetComponent<CardProperties>();
-    //        if (CardProperties.cardColor == TopCardProperties.cardColor || CardProperties.cardType == TopCardProperties.cardType)
-    //        {
-    //            HasFoundMatch = true;
-    //            if (enemyHand != DrawCards.EnemyCards2) // Fixs sideways cards
-    //            {
-    //                Card.transform.Rotate(Vector3.forward * 90);
-    //            }
-    //            //enemyHand.Remove(Card);
-    //            //Card.transform.SetParent(DiscardArea.transform, false);
-    //            StartCoroutine(MoveCard(Card, enemyHand, DiscardArea));
-    //            DrawCards.CurrentPlayedCard = Card;
-    //            DrawCards.PlayedCards.Add(Card);
-    //            TopCardProperties = Card.GetComponent<CardProperties>();
-    //            OutputLog.WriteToOutput(enemyName + ": Played " + Card + " (Card " + i + ")");
-    //            //CleanupDiscardArea();
-    //            TestPlayerCard();
-    //            if (TopCardProperties.cardType == "Reverse")
-    //            {
-    //                TopCardProperties.cardType = "Reversed";
-    //                IsReversed = !IsReversed;
-    //                HasMatch(enemyHand, enemyArea, enemyName);
-    //                OutputLog.WriteToOutput("IsReversed: " + IsReversed);
-    //            }
-    //            IncrementTurns();
-    //            //return;
-    //            break;
-    //        }
-    //        OutputLog.WriteToOutput(enemyName + ": " + Card + " (Card " + i + ") did not match");
-    //    }
-    //    if (HasFoundMatch == false)
-    //    {
-    //        OutputLog.WriteToOutput("HasFoundMatch = " + HasFoundMatch);
-    //        DrawCardsFromDeck(enemyHand, enemyArea, enemyName, 1);
-    //        IncrementTurns();  // Temp fix till can test card
-    //    }
-    //}
-
-    public void DrawCardsFromDeck(List<GameObject> hand, GameObject area, string name, int numberOfCards)
+    public IEnumerator DrawCardsFromDeck(List<GameObject> Hand, GameObject Area, string Name, int NumberOfCards)
     {
-        for (int i = 0; i < numberOfCards; i++)
+        for (int i = 0; i < NumberOfCards; i++)
         {
+            yield return new WaitForSeconds(secRate);
             int DeckTopCardNum = DrawCards.RemainingCards.Count - 1;
             GameObject DeckTopCard = DrawCards.RemainingCards[DeckTopCardNum];
             OutputLog.WriteToOutput("Top Deck Card:" + DeckTopCard);
-            DeckTopCard.transform.SetParent(area.transform, false);
-            DrawCards.RemainingCards.Remove(DeckTopCard);
-            //StartCoroutine(MoveCard(DeckTopCard, DrawCards.RemainingCards, enemyArea));
-            if (hand != DrawCards.EnemyCards2)
+            //DeckTopCard.transform.SetParent(area.transform, false);
+            //DrawCards.RemainingCards.Remove(DeckTopCard);
+            StartCoroutine(MoveCard(DeckTopCard, DrawCards.RemainingCards, Area));
+            if (Hand != DrawCards.EnemyCards2 || Hand != DrawCards.PlayerCards)
             {
                 DeckTopCard.transform.Rotate(Vector3.forward * 90);
             }
-            hand.Add(DeckTopCard);
-            OutputLog.WriteToOutput(name + ": Drew " + DeckTopCard);
+            Hand.Add(DeckTopCard);
+            OutputLog.WriteToOutput(Name + ": Drew " + DeckTopCard);
         }
-        OutputLog.WriteToOutput(name + ": Drew " + numberOfCards + " cards");
+        OutputLog.WriteToOutput(Name + ": Drew " + NumberOfCards + " cards");
     }
 
-    public void IncrementTurns()
+    // This method activates the next player
+    public IEnumerator IncrementTurns()
+//    public void StartCoroutine(IncrementTurns)()
     {
+
+        yield return new WaitForSeconds(Random.Range(2, 4));
         if (!IsReversed)
-        {   // This method activates the next player
+        {
             Turns++;
             if (Turns > 3)
             {
@@ -374,6 +257,8 @@ public class TurnManager : MonoBehaviour
             }
         }
         OutputLog.WriteToOutput("Turns: " + Turns);
+
+        PlayerManager();
 
         if (isWildMenuShown == false)
         {
@@ -398,7 +283,7 @@ public class TurnManager : MonoBehaviour
         while (iS < 1)
         {
             yield return new WaitForSeconds(secRate);
-            if (areaTo != EnemyArea2)
+            if (areaTo == EnemyArea2)
             {
                 StartCoroutine(DrawCards.MoveTo(areaTo, card, true, rate));
             }
@@ -406,10 +291,11 @@ public class TurnManager : MonoBehaviour
             {
                 StartCoroutine(DrawCards.MoveTo(areaTo, card, false, rate));
             }
-
+            //StartCoroutine(DrawCards.MoveTo(areaTo, card, true, rate));
             iS++;
         }
         listFrom.Remove(card);
+        yield return new WaitForSeconds(secRate);
     }
 
     public static void CleanupDiscardArea()
