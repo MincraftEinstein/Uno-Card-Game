@@ -164,17 +164,6 @@ public class DrawCards : MonoBehaviour
             AllCards.Add(Wild);
             AllCards.Add(WildDraw4);
         }
-
-        // TESTING ONLY
-        for (int i = 0; i < 4; i++)
-        {
-            AllCards.Add(Wild);
-            AllCards.Add(WildDraw4);
-            AllCards.Add(Blue_D);
-            AllCards.Add(Red_D);
-            AllCards.Add(Yellow_D);
-            AllCards.Add(Green_D);
-        }
     }
 
     public void Shuffle()

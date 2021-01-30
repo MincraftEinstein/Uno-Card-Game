@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TurnManager : MonoBehaviour
 {
@@ -18,14 +19,18 @@ public class TurnManager : MonoBehaviour
     public GameObject DiscardArea;
     public GameObject WildMenu;
     public DragDrop dragDrop;
-    
+    public Text Enemy1Score;
+    public Text Enemy2Score;
+    public Text Enemy3Score;
+    public Text PlayerScore;
+    public GameObject NextRoundMenu;
+    public Text PlayerWonText;
+    public Text PlayerLostText;
+    private bool PlayerWon;
+    public int WinnerScore;
+
     private List<GameObject> PlayableCards = new List<GameObject>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //DiscardArea = GameObject.Find("DiscardArea");
-    }
     private void Update()
     {
         CleanupDiscardArea();
@@ -234,6 +239,8 @@ public class TurnManager : MonoBehaviour
         DrawCards.CurrentPlayedCard = PlayableCards[i];
         PlayableCards[i].GetComponent<CardFlipper>().Flip();
         OutputLog.WriteToOutput(Name + ": Played " + PlayableCards[i].name);
+        LoadMenu(Hand);
+        CalculateScore();
     }
 
     void CountCardColors(List<GameObject> Hand, GameObject Card)
@@ -346,6 +353,68 @@ public class TurnManager : MonoBehaviour
         }
     }
 
+    private void LoadMenu(List<GameObject> Hand)
+    {
+        if (Hand.Count <= 0)
+        {
+            Instantiate(NextRoundMenu, new Vector3(0, 0, 0), NextRoundMenu.transform.rotation);
+            if (PlayerWon)
+            {
+                Instantiate(PlayerWonText, new Vector3(0, 50, 0), PlayerWonText.transform.rotation);
+            }
+            else
+            {
+                Instantiate(PlayerLostText, new Vector3(0, 50, 0), PlayerLostText.transform.rotation);
+            }
+            Instantiate(Enemy1Score, new Vector3(0, 10, 0), Enemy1Score.transform.rotation);
+            Enemy1Score.transform.SetParent(NextRoundMenu.transform);
+            Instantiate(Enemy2Score, new Vector3(0, 0, 0), Enemy2Score.transform.rotation);
+            Enemy2Score.transform.SetParent(NextRoundMenu.transform);
+            Instantiate(Enemy3Score, new Vector3(0, -10, 0), Enemy3Score.transform.rotation);
+            Enemy3Score.transform.SetParent(NextRoundMenu.transform);
+            Instantiate(PlayerScore, new Vector3(0, -20, 0), PlayerScore.transform.rotation);
+            PlayerScore.transform.SetParent(NextRoundMenu.transform);
+        }
+    }
+
+    private void CalculateScore()
+    {
+        int PlayerScoreInt = 0;
+        int Enemy1ScoreInt = 0;
+        int Enemy2ScoreInt = 0;
+        int Enemy3ScoreInt = 0;
+        for (int i = 0; i < DrawCards.PlayerCards.Count; i++)
+        {
+            PlayerScoreInt = PlayerScoreInt + DrawCards.PlayerCards[i].GetComponent<CardProperties>().cardScore;
+        }
+        for (int i = 0; i < DrawCards.EnemyCards1.Count; i++)
+        {
+            Enemy1ScoreInt = Enemy1ScoreInt + DrawCards.EnemyCards1[i].GetComponent<CardProperties>().cardScore;
+        }
+        for (int i = 0; i < DrawCards.EnemyCards2.Count; i++)
+        {
+            Enemy2ScoreInt = Enemy2ScoreInt + DrawCards.EnemyCards2[i].GetComponent<CardProperties>().cardScore;
+        }
+        for (int i = 0; i < DrawCards.EnemyCards3.Count; i++)
+        {
+            Enemy3ScoreInt = Enemy3ScoreInt + DrawCards.EnemyCards3[i].GetComponent<CardProperties>().cardScore;
+        }
+
+        WinnerScore = FindLargestNum(PlayerScoreInt, Enemy1ScoreInt, Enemy2ScoreInt, Enemy3ScoreInt);
+        PlayerScore.GetComponent<Text>().text = Enemy1ScoreInt.ToString();
+        Enemy1Score.GetComponent<Text>().text = Enemy1ScoreInt.ToString();
+        Enemy2Score.GetComponent<Text>().text = Enemy2ScoreInt.ToString();
+        Enemy3Score.GetComponent<Text>().text = Enemy3ScoreInt.ToString();
+        if (FindLargestNum(PlayerScoreInt, Enemy1ScoreInt, Enemy2ScoreInt, Enemy3ScoreInt) == PlayerScoreInt)
+        {
+            PlayerWon = true;
+        }
+        else
+        {
+            PlayerWon = false;
+        }
+    }
+
     public IEnumerator DrawCardsFromDeck(List<GameObject> Hand, GameObject Area, string Name, int NumberOfCards)
     {
         for (int i = 0; i < NumberOfCards; i++)
@@ -368,7 +437,6 @@ public class TurnManager : MonoBehaviour
     // This method activates the next player
     public IEnumerator IncrementTurns()
     {
-        OutputLog.WriteToOutput("Hello from IncrementTurns");
         yield return new WaitForSeconds(2);
         if (!IsReversed)
         {

@@ -1,0 +1,84 @@
+[11:42:55] Player received: Red_0(Clone)
+[11:42:55] Enemy1 received: CardW4(Clone)
+[11:42:55] Enemy2 received: Yellow_7(Clone)
+[11:42:55] Enemy3 received: Blue_9(Clone)
+[11:42:55] Player received: Red_D(Clone)
+[11:42:55] Enemy1 received: Green_4(Clone)
+[11:42:55] Enemy2 received: Yellow_8(Clone)
+[11:42:55] Enemy3 received: Green_5(Clone)
+[11:42:55] Player received: Red_1(Clone)
+[11:42:55] Enemy1 received: CardW(Clone)
+[11:42:55] Enemy2 received: Yellow_2(Clone)
+[11:42:55] Enemy3 received: Blue_2(Clone)
+[11:42:55] Player received: Blue_S(Clone)
+[11:42:55] Enemy1 received: Green_7(Clone)
+[11:42:55] Enemy2 received: Blue_4(Clone)
+[11:42:55] Enemy3 received: Green_9(Clone)
+[11:42:55] Player received: Yellow_4(Clone)
+[11:42:55] Enemy1 received: Yellow_R(Clone)
+[11:42:55] Enemy2 received: Yellow_1(Clone)
+[11:42:55] Enemy3 received: Green_7(Clone)
+[11:42:55] Player received: Green_D(Clone)
+[11:42:55] Enemy1 received: CardW4(Clone)
+[11:42:55] Enemy2 received: CardW4(Clone)
+[11:42:55] Enemy3 received: Green_1(Clone)
+[11:42:55] Player received: Green_3(Clone)
+[11:42:55] Enemy1 received: Blue_7(Clone)
+[11:42:55] Enemy2 received: Green_S(Clone)
+[11:42:55] Enemy3 received: Blue_3(Clone)
+[11:42:55] DiscardPile received: Green_S(Clone)
+[11:42:55] Hello from PlayerManager.Skip
+[11:42:55] Dealt cards
+[11:42:55] Turns: 1
+[11:42:55] Top card: Green_S(Clone) (UnityEngine.GameObject)
+[11:42:55] CardW4(Clone) was added to PlayableCards
+[11:42:55] Green_4(Clone) was added to PlayableCards
+[11:42:55] CardW(Clone) was added to PlayableCards
+[11:42:55] Green_7(Clone) was added to PlayableCards
+[11:42:55] CardW4(Clone) was added to PlayableCards
+[11:42:55] Enemy 1: Played Green_4(Clone)
+[11:42:55] Largest number among 68, 184, 92 and 36 is 184
+[11:42:55] Largest number among 68, 184, 92 and 36 is 184
+[11:42:55] HasPlayableCard = true
+[11:42:55] Turns: 2
+[11:42:55] Top card: Green_4(Clone) (UnityEngine.GameObject)
+[11:42:55] Blue_4(Clone) was added to PlayableCards
+[11:42:55] CardW4(Clone) was added to PlayableCards
+[11:42:55] Green_S(Clone) was added to PlayableCards
+[11:42:55] Enemy 2: Played Green_S(Clone)
+[11:42:55] Largest number among 68, 184, 72 and 36 is 184
+[11:42:55] Largest number among 68, 184, 72 and 36 is 184
+[11:42:55] HasPlayableCard = true
+[11:42:55] Turns: 3
+[11:42:55] Top card: Green_S(Clone) (UnityEngine.GameObject)
+[11:42:55] Turns: 0
+[11:42:55] Player: Played Green_3(Clone)
+[11:42:55] Turns: 1
+[11:42:55] Top card: Green_3(Clone) (UnityEngine.GameObject)
+[11:42:55] CardW4(Clone) was added to PlayableCards
+[11:42:55] CardW(Clone) was added to PlayableCards
+[11:42:55] Green_7(Clone) was added to PlayableCards
+[11:42:55] CardW4(Clone) was added to PlayableCards
+[11:42:55] Enemy 1: Played Green_7(Clone)
+[11:42:55] Largest number among 71, 177, 72 and 36 is 177
+[11:42:55] Largest number among 71, 177, 72 and 36 is 177
+[11:42:55] HasPlayableCard = true
+[11:42:55] Removed Green_4(Clone) (UnityEngine.GameObject)from game
+[11:42:55] Turns: 2
+[11:42:55] Top card: Green_7(Clone) (UnityEngine.GameObject)
+[11:42:55] Yellow_7(Clone) was added to PlayableCards
+[11:42:55] CardW4(Clone) was added to PlayableCards
+[11:42:55] Enemy 2: Played Yellow_7(Clone)
+[11:42:55] Largest number among 71, 177, 65 and 36 is 177
+[11:42:55] Largest number among 71, 177, 65 and 36 is 177
+[11:42:55] HasPlayableCard = true
+[11:42:55] Removed Green_S(Clone) (UnityEngine.GameObject)from game
+[11:42:55] Turns: 3
+[11:42:55] Top card: Yellow_7(Clone) (UnityEngine.GameObject)
+[11:42:55] Green_7(Clone) was added to PlayableCards
+[11:42:55] Enemy 3: Played Green_7(Clone)
+[11:42:55] Largest number among 71, 177, 65 and 29 is 177
+[11:42:55] Largest number among 71, 177, 65 and 29 is 177
+[11:42:55] HasPlayableCard = true
+[11:42:55] Removed Green_3(Clone) (UnityEngine.GameObject)from game
+[11:42:55] Turns: 0
