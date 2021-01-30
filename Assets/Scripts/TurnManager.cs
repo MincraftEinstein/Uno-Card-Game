@@ -232,6 +232,7 @@ public class TurnManager : MonoBehaviour
         DrawCards.PlayedCards.Add(PlayableCards[i]);
         Hand.Remove(PlayableCards[i]);
         DrawCards.CurrentPlayedCard = PlayableCards[i];
+        PlayableCards[i].GetComponent<CardFlipper>().Flip();
         OutputLog.WriteToOutput(Name + ": Played " + PlayableCards[i].name);
     }
 
@@ -354,6 +355,10 @@ public class TurnManager : MonoBehaviour
             GameObject Card = DrawCards.RemainingCards[CardNum];
             OutputLog.WriteToOutput("Top Deck Card:" + Card.name);
             StartCoroutine(MoveCard(Card, DrawCards.RemainingCards, Area));
+            if (Area == PlayerArea)
+            {
+                Card.GetComponent<CardFlipper>().Flip();
+            }
             Hand.Add(Card);
             OutputLog.WriteToOutput(Name + ": Drew " + Card.name);
         }

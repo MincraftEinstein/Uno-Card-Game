@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5652671635133268753}
   - component: {fileID: 5628723768225433693}
   - component: {fileID: 114760933149450746}
+  - component: {fileID: -865795038762797578}
   m_Layer: 8
   m_Name: Blue_9
   m_TagString: Untagged
@@ -93,6 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDraggable: 0
+  canPlayCard: 0
 --- !u!114 &5710153418469064267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,3 +202,18 @@ MonoBehaviour:
   cardScore: 9
   isSideways: 0
   HasAuthority: 0
+--- !u!114 &-865795038762797578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7469969725392156737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53502a19d4fe527499f9c69ed54ae76c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CardFront: {fileID: -9162683967630634038, guid: b13ed50ad30055443b27d134ca5c2311,
+    type: 3}
+  CardBack: {fileID: 504965767641513020, guid: b13ed50ad30055443b27d134ca5c2311, type: 3}

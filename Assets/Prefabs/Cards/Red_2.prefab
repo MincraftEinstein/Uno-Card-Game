@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3104386292187221009}
   - component: {fileID: 3133258993829594973}
   - component: {fileID: 114003048244985758}
+  - component: {fileID: 5976626707356018586}
   m_Layer: 8
   m_Name: Red_2
   m_TagString: Untagged
@@ -93,6 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDraggable: 0
+  canPlayCard: 0
 --- !u!114 &3051230814260326731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,3 +202,18 @@ MonoBehaviour:
   cardScore: 2
   isSideways: 0
   HasAuthority: 0
+--- !u!114 &5976626707356018586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201542571402016577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53502a19d4fe527499f9c69ed54ae76c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CardFront: {fileID: -7557494978891415441, guid: b13ed50ad30055443b27d134ca5c2311,
+    type: 3}
+  CardBack: {fileID: 504965767641513020, guid: b13ed50ad30055443b27d134ca5c2311, type: 3}

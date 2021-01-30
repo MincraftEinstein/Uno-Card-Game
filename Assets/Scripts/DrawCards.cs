@@ -239,7 +239,7 @@ public class DrawCards : MonoBehaviour
                 //Put the remainder of the deck in the DeckZone.
                 Card = Instantiate(AllCards[i], new Vector3(0, 0, 0), Quaternion.identity);
                 Card.transform.SetParent(DeckZone.transform, false);
-                //Card.GetComponent<CardProperties>().HasAuthority = false;
+                Card.GetComponent<CardFlipper>().Flip();
                 RemainingCards.Add(Card);
 
             }
@@ -268,6 +268,7 @@ public class DrawCards : MonoBehaviour
                     RemainingCards.Remove(Card);
                     PlayerCards.Add(Card);
                     OutputLog.WriteToOutput("Player received: " + Card.name);
+                    Card.GetComponent<CardFlipper>().Flip();
 
                 }
                 else if (iP == 1)
@@ -326,6 +327,7 @@ public class DrawCards : MonoBehaviour
         RemainingCards.Remove(Card);
         PlayedCards.Add(Card);
         CurrentPlayedCard = Card;
+        Card.GetComponent<CardFlipper>().Flip();
         OutputLog.WriteToOutput("DiscardPile received: " + Card.name);
         yield return new WaitForSeconds(secRate);
 
