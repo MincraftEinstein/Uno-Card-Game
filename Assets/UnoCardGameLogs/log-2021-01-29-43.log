@@ -1,0 +1,50 @@
+[08:33:42] Player received: Yellow_9(Clone)
+[08:33:42] Enemy1 received: Red_2(Clone)
+[08:33:42] Enemy2 received: Green_6(Clone)
+[08:33:42] Enemy3 received: Blue_R(Clone)
+[08:33:42] Player received: CardW4(Clone)
+[08:33:42] Enemy1 received: Blue_D(Clone)
+[08:33:42] Enemy2 received: Blue_9(Clone)
+[08:33:42] Enemy3 received: Green_3(Clone)
+[08:33:42] Player received: CardW(Clone)
+[08:33:42] Enemy1 received: Blue_S(Clone)
+[08:33:42] Enemy2 received: Green_2(Clone)
+[08:33:42] Enemy3 received: CardW(Clone)
+[08:33:42] Player received: Red_7(Clone)
+[08:33:42] Enemy1 received: Green_5(Clone)
+[08:33:42] Enemy2 received: Red_R(Clone)
+[08:33:42] Enemy3 received: CardW(Clone)
+[08:33:42] Player received: Green_D(Clone)
+[08:33:42] Enemy1 received: Yellow_D(Clone)
+[08:33:42] Enemy2 received: CardW4(Clone)
+[08:33:42] Enemy3 received: Blue_1(Clone)
+[08:33:42] Player received: Red_D(Clone)
+[08:33:42] Enemy1 received: CardW(Clone)
+[08:33:42] Enemy2 received: Green_S(Clone)
+[08:33:42] Enemy3 received: Yellow_4(Clone)
+[08:33:42] Player received: Yellow_8(Clone)
+[08:33:42] Enemy1 received: Blue_8(Clone)
+[08:33:42] Enemy2 received: Red_5(Clone)
+[08:33:42] Enemy3 received: Green_R(Clone)
+[08:33:42] DiscardPile received: Blue_S(Clone)
+[08:33:42] Dealt cards
+[08:33:42] Player: Played Red_7
+[08:33:42] Turns: 1
+[08:33:42] Top card: Red_7(Clone) (UnityEngine.GameObject)
+[08:33:42] Red_2(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[08:33:42] CardW(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[08:33:42] Enemy 1: Played Red_2(Clone)
+[08:33:42] HasPlayableCard = true
+[08:33:42] Turns: 2
+[08:33:42] Top card: Red_2(Clone) (UnityEngine.GameObject)
+[08:33:42] Green_2(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[08:33:42] Red_R(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[08:33:42] CardW4(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[08:33:42] Red_5(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[08:33:42] Enemy 2: Played Red_R(Clone)
+[08:33:42] HasPlayableCard = true
+[08:33:42] Turns: 1
+[08:33:42] Top card: Red_R(Clone) (UnityEngine.GameObject)
+[08:33:42] CardW(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[08:33:42] HasPlayableCard = true
+[08:33:42] Turns: 0

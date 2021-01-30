@@ -87,10 +87,12 @@ public class DrawCards : MonoBehaviour
     public float secRate = 0.5F;
     public int iS;
     private bool WasClicked;
+    private GameObject turnManagerGO;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
+        turnManagerGO = GameObject.Find("TurnManager");
         CreateNewDeck();
         Shuffle();
     }
@@ -177,17 +179,33 @@ public class DrawCards : MonoBehaviour
 
     public void Shuffle()
     {
-        List<GameObject> ShuffleList = new List<GameObject>();
+        List<GameObject> tmp = new List<GameObject>();
 
         int max = AllCards.Count;
         while (max > 0)
         {
             int offset = UnityEngine.Random.Range(0, max);
-            ShuffleList.Add(AllCards[offset]);
+            tmp.Add(AllCards[offset]);
             AllCards.RemoveAt(offset);
             max -= 1;
         }
-        AllCards = ShuffleList;
+        AllCards = tmp;
+
+        //This is to make sure the discard is not a Wild card
+        Card = AllCards[AllCards.Count - 29];
+        if (Card.GetComponent<CardProperties>().cardType == "Wild" || Card.GetComponent<CardProperties>().cardType == "WildDraw4")
+        {
+            OutputLog.WriteToOutput("Discard was WILD!!!");
+            max = AllCards.Count;
+            while (max > 0)
+            {
+                int offset = UnityEngine.Random.Range(0, max);
+                tmp.Add(AllCards[offset]);
+                AllCards.RemoveAt(offset);
+                max -= 1;
+            }
+            AllCards = tmp;
+        }
     }
 
     public void onClick()
@@ -306,17 +324,42 @@ public class DrawCards : MonoBehaviour
             iS++;
         }
         RemainingCards.Remove(Card);
+        PlayedCards.Add(Card);
         CurrentPlayedCard = Card;
         OutputLog.WriteToOutput("DiscardPile received: " + Card.name);
         yield return new WaitForSeconds(secRate);
-
-        CurrentPlayedCard.GetComponent<DragDrop>().PlayerLogic(CurrentPlayedCard.GetComponent<CardProperties>());
 
         //Gives the player authority over their cards
         for (int i = 0; i < PlayerCards.Count; i++)
         {
             PlayerCards[i].GetComponent<CardProperties>().HasAuthority = true;
         }
+
+        //if (CurrentPlayedCard.GetComponent<CardProperties>().cardType != "Zero"
+        //    || CurrentPlayedCard.GetComponent<CardProperties>().cardType != "One" 
+        //    || CurrentPlayedCard.GetComponent<CardProperties>().cardType != "Two" 
+        //    || CurrentPlayedCard.GetComponent<CardProperties>().cardType != "Three" 
+        //    || CurrentPlayedCard.GetComponent<CardProperties>().cardType != "Four"
+        //    || CurrentPlayedCard.GetComponent<CardProperties>().cardType != "Five"
+        //    || CurrentPlayedCard.GetComponent<CardProperties>().cardType != "Six"
+        //    || CurrentPlayedCard.GetComponent<CardProperties>().cardType != "Seven"
+        //    || CurrentPlayedCard.GetComponent<CardProperties>().cardType != "Eight"
+        //    || CurrentPlayedCard.GetComponent<CardProperties>().cardType != "Nine")
+        //{
+        if (CurrentPlayedCard.GetComponent<CardProperties>().cardType == "Reverse")
+        {
+            turnManagerGO.GetComponent<TurnManager>().IsReversed = !turnManagerGO.GetComponent<TurnManager>().IsReversed;
+        }
+
+        if (CurrentPlayedCard.GetComponent<CardProperties>().cardType == "Skip"
+            || CurrentPlayedCard.GetComponent<CardProperties>().cardType == "Draw2"
+            || CurrentPlayedCard.GetComponent<CardProperties>().cardType == "Wild"
+            || CurrentPlayedCard.GetComponent<CardProperties>().cardType == "WildDraw4")
+        {
+            turnManagerGO.GetComponent<TurnManager>().TurnResult = CurrentPlayedCard.GetComponent<CardProperties>().cardType;
+        }
+
+        turnManagerGO.GetComponent<TurnManager>().PlayerManager();
 
         // Make the button inactive.
         Button.SetActive(false);

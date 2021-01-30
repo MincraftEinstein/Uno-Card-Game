@@ -92,8 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 547564e448ac7eb459a7a208bc486667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DiscardPile: {fileID: 0}
-  WildMenu: {fileID: 0}
+  isDraggable: 0
 --- !u!114 &4948778087212706683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,5 +198,5 @@ MonoBehaviour:
   cardColor: Red
   cardType: Three
   cardScore: 3
-  isSideways: 1
+  isSideways: 0
   HasAuthority: 0

@@ -18,9 +18,9 @@ public class WildButton : MonoBehaviour
         ColorSelected = ColorSelected.Replace("Button", "");
         DrawCards.CurrentPlayedCard.GetComponent<CardProperties>().cardColor = ColorSelected;
         OutputLog.WriteToOutput("Player called " + ColorSelected);
+        StartCoroutine(turnManager.GetComponent<TurnManager>().IncrementTurns());
         Destroy(WildMenu);
         TurnManager.isWildMenuShown = false;
         OutputLog.WriteToOutput("Wild Menu hidden");
-        StartCoroutine(turnManager.GetComponent<TurnManager>().IncrementTurns());
     }
 }

@@ -1,0 +1,192 @@
+[07:33:34] Player received: Yellow_2(Clone)
+[07:33:34] Enemy1 received: Red_R(Clone)
+[07:33:34] Enemy2 received: Yellow_5(Clone)
+[07:33:34] Enemy3 received: Yellow_0(Clone)
+[07:33:34] Player received: Red_D(Clone)
+[07:33:34] Enemy1 received: Green_6(Clone)
+[07:33:34] Enemy2 received: CardW4(Clone)
+[07:33:34] Enemy3 received: Green_D(Clone)
+[07:33:34] Player received: Blue_2(Clone)
+[07:33:34] Enemy1 received: Green_4(Clone)
+[07:33:34] Enemy2 received: CardW4(Clone)
+[07:33:34] Enemy3 received: CardW(Clone)
+[07:33:34] Player received: Red_7(Clone)
+[07:33:34] Enemy1 received: Green_2(Clone)
+[07:33:34] Enemy2 received: Green_9(Clone)
+[07:33:34] Enemy3 received: Yellow_D(Clone)
+[07:33:34] Player received: Blue_0(Clone)
+[07:33:34] Enemy1 received: Yellow_6(Clone)
+[07:33:34] Enemy2 received: Green_5(Clone)
+[07:33:34] Enemy3 received: Yellow_3(Clone)
+[07:33:34] Player received: Yellow_1(Clone)
+[07:33:34] Enemy1 received: CardW(Clone)
+[07:33:34] Enemy2 received: Yellow_D(Clone)
+[07:33:34] Enemy3 received: Green_2(Clone)
+[07:33:34] Player received: Blue_D(Clone)
+[07:33:34] Enemy1 received: Red_4(Clone)
+[07:33:34] Enemy2 received: CardW4(Clone)
+[07:33:34] Enemy3 received: Blue_D(Clone)
+[07:33:34] DiscardPile received: Blue_S(Clone)
+[07:33:34] Dealt cards
+[07:33:34] Player: Played Blue_D
+[07:33:34] Turns: 1
+[07:33:34] Top card: Blue_D(Clone) (UnityEngine.GameObject)
+[07:33:34] Top Deck Card:Blue_5(Clone) (UnityEngine.GameObject)
+[07:33:34] Enemy 1: Drew Blue_5(Clone) (UnityEngine.GameObject)
+[07:33:34] Top Deck Card:Blue_4(Clone) (UnityEngine.GameObject)
+[07:33:34] Enemy 1: Drew Blue_4(Clone) (UnityEngine.GameObject)
+[07:33:34] Enemy 1: Drew 2 cards
+[07:33:34] Turns: 2
+[07:33:34] Top card: Blue_D(Clone) (UnityEngine.GameObject)
+[07:33:34] CardW4(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[07:33:34] CardW4(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[07:33:34] Yellow_D(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[07:33:34] CardW4(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[07:33:34] Enemy 2: Played Yellow_D(Clone)
+[07:33:34] HasPlayableCard = true
+[07:33:34] Turns: 3
+[07:33:34] Top card: Yellow_D(Clone) (UnityEngine.GameObject)
+[07:33:34] Top Deck Card:Green_0(Clone) (UnityEngine.GameObject)
+[07:33:34] Enemy 3: Drew Green_0(Clone) (UnityEngine.GameObject)
+[07:33:34] Top Deck Card:Blue_7(Clone) (UnityEngine.GameObject)
+[07:33:34] Enemy 3: Drew Blue_7(Clone) (UnityEngine.GameObject)
+[07:33:34] Enemy 3: Drew 2 cards
+[07:33:34] Turns: 0
+[07:33:34] Player: Played Blue_2
+[07:33:34] Turns: 1
+[07:33:34] Top card: Blue_2(Clone) (UnityEngine.GameObject)
+[07:33:34] Green_2(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[07:33:34] CardW(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[07:33:34] Blue_5(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[07:33:34] Blue_4(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[07:33:34] Enemy 1: Played Green_2(Clone)
+[07:33:34] HasPlayableCard = true
+[07:33:34] Turns: 2
+[07:33:34] Top card: Green_2(Clone) (UnityEngine.GameObject)
+[07:33:34] CardW4(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[07:33:34] CardW4(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[07:33:34] Green_9(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[07:33:34] Green_5(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[07:33:34] CardW4(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[07:33:34] Enemy 2: Played Green_9(Clone)
+[07:33:34] HasPlayableCard = true
+[07:33:34] Turns: 3
+[07:33:34] Top card: Green_9(Clone) (UnityEngine.GameObject)
+[07:33:34] Green_D(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[07:33:34] CardW(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[07:33:34] Green_2(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[07:33:34] Green_0(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[07:33:34] Enemy 3: Played Green_D(Clone)
+[07:33:34] Removed Blue_D(Clone) (UnityEngine.GameObject)
+[07:33:34] HasPlayableCard = true
+[07:33:34] Turns: 0
+[07:33:34] Hello from PlayerManager.Draw2
+[07:33:34] Top Deck Card:Green_D(Clone) (UnityEngine.GameObject)
+[07:33:34] Player: Drew Green_D(Clone) (UnityEngine.GameObject)
+[07:33:34] Top Deck Card:Blue_3(Clone) (UnityEngine.GameObject)
+[07:33:34] Player: Drew Blue_3(Clone) (UnityEngine.GameObject)
+[07:33:34] Player: Drew 2 cards
+[07:33:34] Turns: 1
+[07:33:34] Top card: Green_D(Clone) (UnityEngine.GameObject)
+[07:33:34] Green_6(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[07:33:34] Green_4(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[07:33:34] CardW(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[07:33:34] Enemy 1: Played Green_6(Clone)
+[07:33:34] Removed Yellow_D(Clone) (UnityEngine.GameObject)
+[07:33:34] HasPlayableCard = true
+[07:33:34] Turns: 2
+[07:33:34] Top card: Green_6(Clone) (UnityEngine.GameObject)
+[07:33:34] CardW4(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[07:33:34] CardW4(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[07:33:34] Green_5(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[07:33:34] CardW4(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[07:33:34] Enemy 2: Played Green_5(Clone)
+[07:33:34] Removed Blue_2(Clone) (UnityEngine.GameObject)
+[07:33:34] HasPlayableCard = true
+[07:33:34] Turns: 3
+[07:33:34] Top card: Green_5(Clone) (UnityEngine.GameObject)
+[07:33:34] CardW(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[07:33:34] Green_2(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[07:33:34] Green_0(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[07:33:34] Enemy 3: Played Green_2(Clone)
+[07:33:34] Removed Green_2(Clone) (UnityEngine.GameObject)
+[07:33:34] HasPlayableCard = true
+[07:33:34] Turns: 0
+[09:18:37] Player received: Red_1(Clone)
+[09:18:37] Enemy1 received: Green_S(Clone)
+[09:18:37] Enemy2 received: Yellow_D(Clone)
+[09:18:37] Enemy3 received: Red_9(Clone)
+[09:18:37] Player received: Blue_D(Clone)
+[09:18:37] Enemy1 received: Red_D(Clone)
+[09:18:37] Enemy2 received: Red_6(Clone)
+[09:18:37] Enemy3 received: Red_5(Clone)
+[09:18:37] Player received: CardW4(Clone)
+[09:18:37] Enemy1 received: Yellow_3(Clone)
+[09:18:37] Enemy2 received: Blue_D(Clone)
+[09:18:37] Enemy3 received: Red_3(Clone)
+[09:18:37] Player received: Green_6(Clone)
+[09:18:37] Enemy1 received: CardW4(Clone)
+[09:18:37] Enemy2 received: Green_3(Clone)
+[09:18:37] Enemy3 received: Blue_9(Clone)
+[09:18:37] Player received: Yellow_1(Clone)
+[09:18:37] Enemy1 received: Green_1(Clone)
+[09:18:37] Enemy2 received: Blue_0(Clone)
+[09:18:37] Enemy3 received: Yellow_1(Clone)
+[09:18:37] Player received: Green_D(Clone)
+[09:18:37] Enemy1 received: Blue_7(Clone)
+[09:18:37] Enemy2 received: Yellow_D(Clone)
+[09:18:37] Enemy3 received: Green_D(Clone)
+[09:18:37] Player received: Red_7(Clone)
+[09:18:37] Enemy1 received: Blue_2(Clone)
+[09:18:37] Enemy2 received: Green_4(Clone)
+[09:18:37] Enemy3 received: Blue_S(Clone)
+[09:18:37] DiscardPile received: Yellow_S(Clone)
+[09:18:37] Dealt cards
+[09:18:37] Player: Played Green_D
+[09:18:37] Turns: 1
+[09:18:37] Top card: Green_D(Clone) (UnityEngine.GameObject)
+[09:18:37] Top Deck Card:CardW(Clone) (UnityEngine.GameObject)
+[09:18:37] Enemy 1: Drew CardW(Clone) (UnityEngine.GameObject)
+[09:18:37] Top Deck Card:Blue_S(Clone) (UnityEngine.GameObject)
+[09:18:37] Enemy 1: Drew Blue_S(Clone) (UnityEngine.GameObject)
+[09:18:37] Enemy 1: Drew 2 cards
+[09:18:37] Turns: 2
+[09:18:37] Top card: Green_D(Clone) (UnityEngine.GameObject)
+[09:18:37] Yellow_D(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[09:18:37] Blue_D(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[09:18:37] Green_3(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[09:18:37] Yellow_D(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[09:18:37] Green_4(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[09:18:37] Enemy 2: Played Yellow_D(Clone)
+[09:18:37] HasPlayableCard = true
+[09:18:37] Turns: 3
+[09:18:37] Top card: Yellow_D(Clone) (UnityEngine.GameObject)
+[09:18:37] Top Deck Card:Blue_6(Clone) (UnityEngine.GameObject)
+[09:18:37] Enemy 3: Drew Blue_6(Clone) (UnityEngine.GameObject)
+[09:18:37] Top Deck Card:Blue_3(Clone) (UnityEngine.GameObject)
+[09:18:37] Enemy 3: Drew Blue_3(Clone) (UnityEngine.GameObject)
+[09:18:37] Enemy 3: Drew 2 cards
+[09:18:37] Turns: 0
+[09:18:37] Player: Played Blue_D
+[09:18:37] Turns: 1
+[09:18:37] Top card: Blue_D(Clone) (UnityEngine.GameObject)
+[09:18:37] Top Deck Card:Blue_4(Clone) (UnityEngine.GameObject)
+[09:18:37] Enemy 1: Drew Blue_4(Clone) (UnityEngine.GameObject)
+[09:18:37] Top Deck Card:Red_3(Clone) (UnityEngine.GameObject)
+[09:18:37] Enemy 1: Drew Red_3(Clone) (UnityEngine.GameObject)
+[09:18:37] Enemy 1: Drew 2 cards
+[09:18:37] Turns: 2
+[09:18:37] Top card: Blue_D(Clone) (UnityEngine.GameObject)
+[09:18:37] Blue_D(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[09:18:37] Blue_0(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[09:18:37] Yellow_D(Clone) (UnityEngine.GameObject) was added to PlayableCards
+[09:18:37] Enemy 2: Played Blue_D(Clone)
+[09:18:37] HasPlayableCard = true
+[09:18:37] Turns: 3
+[09:18:37] Top card: Blue_D(Clone) (UnityEngine.GameObject)
+[09:18:37] Top Deck Card:Blue_D(Clone) (UnityEngine.GameObject)
+[09:18:37] Enemy 3: Drew Blue_D(Clone) (UnityEngine.GameObject)
+[09:18:37] Top Deck Card:CardW4(Clone) (UnityEngine.GameObject)
+[09:18:37] Enemy 3: Drew CardW4(Clone) (UnityEngine.GameObject)
+[09:18:37] Enemy 3: Drew 2 cards
+[09:18:37] Turns: 0

@@ -24,10 +24,29 @@ public class TurnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DiscardArea = GameObject.Find("DiscardArea");
+        //DiscardArea = GameObject.Find("DiscardArea");
+    }
+    private void Update()
+    {
+        CleanupDiscardArea();
     }
 
-//------Player Code---------------------------------------------------------------------------------------------------------------------------
+    private void CleanupDiscardArea()
+    {
+        if (DrawCards.PlayedCards.Count == 5)
+        {
+            DrawCards.PlayedCards.RemoveAt(0);
+            OutputLog.WriteToOutput("Removed " + DrawCards.PlayedCards[0] + "from game");
+            //Destroy(DrawCards.PlayedCards[0]);
+            if (DrawCards.PlayedCards[0] != null)
+            {
+                // Do something  
+                Destroy(DrawCards.PlayedCards[0]);
+            }
+        }
+    }
+
+    //------Player Code---------------------------------------------------------------------------------------------------------------------------
 
     public void PlayerManager()
     {
@@ -55,28 +74,51 @@ public class TurnManager : MonoBehaviour
             }
             else
             {
-                for (int i = 0; i < DrawCards.PlayerCards.Count; i++)
-                {
-                    DrawCards.PlayerCards[i].GetComponent<CardProperties>().HasAuthority = true;
-                }
-
                 GameObject TopCard = DrawCards.CurrentPlayedCard;
                 CardProperties TopCardProperties = TopCard.GetComponent<CardProperties>();
+                //Test the each card to identify playable cards.
+                for (int i = 0; i < DrawCards.PlayerCards.Count; i++)
+                {
+                    GameObject Card = DrawCards.PlayerCards[i];
+                    Card.GetComponent<CardProperties>().HasAuthority = true;
+                    CardProperties CardProperties = Card.GetComponent<CardProperties>();
+                    if (CardProperties.cardColor == TopCardProperties.cardColor || CardProperties.cardType == TopCardProperties.cardType || CardProperties.cardType == "Wild" || CardProperties.cardType == "WildDraw4")
+                    {
+                        Card.GetComponent<DragDrop>().canPlayCard = true;
+                    }
+                }
+
+                //If the player doesn't have any playable cards, draw one from the deck
                 if (HasPlayableCard(DrawCards.PlayerCards, TopCardProperties) == false)
                 {
-                    int DeckTopCardNum = DrawCards.RemainingCards.Count - 1;
-                    GameObject DeckTopCard = DrawCards.RemainingCards[DeckTopCardNum];
-                    DeckTopCard.GetComponent<CardProperties>().HasAuthority = true;
+                    OutputLog.WriteToOutput("player didn't have a playable card");
+                    int CardNum = DrawCards.RemainingCards.Count - 1;
+                    GameObject Card = DrawCards.RemainingCards[CardNum];
+                    Card.GetComponent<CardProperties>().HasAuthority = true;
+                    //Test the new card to see if it can be played
+                    CardProperties CardProperties = Card.GetComponent<CardProperties>();
+                    if (CardProperties.cardColor == TopCardProperties.cardColor || CardProperties.cardType == TopCardProperties.cardType || CardProperties.cardType == "Wild" || CardProperties.cardType == "WildDraw4")
+                    {
+                        //Card is playable                     
+                        Card.GetComponent<DragDrop>().canPlayCard = true;
+                    }
+                    else
+                    {
+                        //Card isn't playable, so move to the next player.
+                        TurnResult = "normal";
+                        StartCoroutine(IncrementTurns());
+                    }
                 }
             }
         }
-        else
-        {
-            for (int i = 0; i < DrawCards.PlayerCards.Count; i++)
-            {
-                DrawCards.PlayerCards[i].GetComponent<CardProperties>().HasAuthority = false;
-            }
-        }
+        //else
+        ////Not the players turn
+        //{
+        //    for (int i = 0; i < DrawCards.PlayerCards.Count; i++)
+        //    {
+        //        DrawCards.PlayerCards[i].GetComponent<CardProperties>().HasAuthority = false;
+        //    }
+        //}
     }
 
 //------AI Code---------------------------------------------------------------------------------------------------------------------------
@@ -106,7 +148,7 @@ public class TurnManager : MonoBehaviour
             if (CardProperties.cardColor == TopCardProperties.cardColor || CardProperties.cardType == TopCardProperties.cardType || CardProperties.cardType == "Wild" || CardProperties.cardType == "WildDraw4")
             {
                 PlayableCards.Add(Card);
-                OutputLog.WriteToOutput(Card + " was added to PlayableCards");
+                OutputLog.WriteToOutput(Card.name + " was added to PlayableCards");
             }
         }
 
@@ -152,26 +194,116 @@ public class TurnManager : MonoBehaviour
                 goto PlayCardEnd;
             }
         }
+        //Look for a Wild card.
+        for (int i = 0; i < PlayableCards.Count; i++)
+        {
+            if (PlayableCards[i].GetComponent<CardProperties>().cardType == "Wild")
+            {
+                CountCardColors(Hand, PlayableCards[i]);
+                WhenCardPlayed(Hand, i, Name);
+                TurnResult = "Wild";
+                goto PlayCardEnd;
+            }
+        }
+        //Look for a Wild Draw 4
+        for (int i = 0; i < PlayableCards.Count; i++)
+        {
+            if (PlayableCards[i].GetComponent<CardProperties>().cardType == "WildDraw4")
+            {
+                CountCardColors(Hand, PlayableCards[i]);
+                WhenCardPlayed(Hand, i, Name);
+                TurnResult = "WildDraw4";
+                goto PlayCardEnd;
+            }
+        }
         PlayCardEnd:
         PlayableCards.Clear();
-        CleanupDiscardArea();
+        //CleanupDiscardArea();
         StartCoroutine(IncrementTurns());
     }
 
     private void WhenCardPlayed(List<GameObject> Hand, int i, string Name)
     {
+        //if (Hand == DrawCards.EnemyCards2)
+        //{
+        //    PlayableCards[i].transform.Rotate(Vector3.forward * 90);
+        //}
         StartCoroutine(MoveCard(PlayableCards[i], Hand, DiscardArea));
-        if (Hand != DrawCards.EnemyCards2 || Hand != DrawCards.PlayerCards)
-        {
-            if (Hand != DrawCards.EnemyCards2 || Hand != DrawCards.PlayerCards)
-            {
-                PlayableCards[i].transform.Rotate(Vector3.forward * 90);
-            }
-        }
         DrawCards.PlayedCards.Add(PlayableCards[i]);
         Hand.Remove(PlayableCards[i]);
         DrawCards.CurrentPlayedCard = PlayableCards[i];
         OutputLog.WriteToOutput(Name + ": Played " + PlayableCards[i].name);
+    }
+
+    void CountCardColors(List<GameObject> Hand, GameObject Card)
+    {
+        int redCards = 0;
+        int yellowCards = 0;
+        int greenCards = 0;
+        int blueCards = 0;
+        for (int i = 0; i < Hand.Count; i++)
+        {
+            if (Hand[i].GetComponent<CardProperties>().cardColor == "Red")
+            {
+                redCards++;
+            }
+            if (Hand[i].GetComponent<CardProperties>().cardColor == "Yellow")
+            {
+                yellowCards++;
+            }
+            if (Hand[i].GetComponent<CardProperties>().cardColor == "Green")
+            {
+                greenCards++;
+            }
+            if (Hand[i].GetComponent<CardProperties>().cardColor == "Blue")
+            {
+                blueCards++;
+            }
+        }
+        OutputLog.WriteToOutput("redCards: " + redCards);
+        OutputLog.WriteToOutput("yellowCards: " + yellowCards);
+        OutputLog.WriteToOutput("greenCards: " + greenCards);
+        OutputLog.WriteToOutput("blueCards: " + blueCards);
+        if(FindLargestNum(redCards, yellowCards, greenCards, blueCards) == redCards)
+        {
+            Card.GetComponent<CardProperties>().cardColor = "Red";
+            OutputLog.WriteToOutput("wild color set to red");
+        }
+        else if (FindLargestNum(redCards, yellowCards, greenCards, blueCards) == yellowCards)
+        {
+            Card.GetComponent<CardProperties>().cardColor = "Yellow";
+            OutputLog.WriteToOutput("wild color set to yellow");
+        } 
+        else if (FindLargestNum(redCards, yellowCards, greenCards, blueCards) == greenCards)
+        {
+            Card.GetComponent<CardProperties>().cardColor = "Green";
+            OutputLog.WriteToOutput("wild color set to green");
+        }
+        else if (FindLargestNum(redCards, yellowCards, greenCards, blueCards) == blueCards)
+        {
+            Card.GetComponent<CardProperties>().cardColor = "Blue";
+            OutputLog.WriteToOutput("wild color set to blue");
+        }
+    }
+
+    public int FindLargestNum(int n1, int n2, int n3, int n4)
+    {
+        // variable declaration 
+        //int n1 = 5, n2 = 10,
+        //    n3 = 15, n4 = 20, max;
+        int max;
+
+        // Largest among n1 and n2 
+        max = (n1 > n2 && n1 > n2 && n1 > n2) ?
+                    n1 : (n2 > n3 && n2 > n4) ?
+                               n2 : (n3 > n4) ? n3 : n4;
+
+        // Print the largest number 
+        OutputLog.WriteToOutput("Largest number among " +
+                            n1 + ", " + n2 + ", " +
+                                n3 + " and " + n4 +
+                                     " is " + max);
+        return max;
     }
 
     // This method determines what the current player will do
@@ -218,28 +350,21 @@ public class TurnManager : MonoBehaviour
         for (int i = 0; i < NumberOfCards; i++)
         {
             yield return new WaitForSeconds(secRate);
-            int DeckTopCardNum = DrawCards.RemainingCards.Count - 1;
-            GameObject DeckTopCard = DrawCards.RemainingCards[DeckTopCardNum];
-            OutputLog.WriteToOutput("Top Deck Card:" + DeckTopCard);
-            //DeckTopCard.transform.SetParent(area.transform, false);
-            //DrawCards.RemainingCards.Remove(DeckTopCard);
-            StartCoroutine(MoveCard(DeckTopCard, DrawCards.RemainingCards, Area));
-            if (Hand != DrawCards.EnemyCards2 || Hand != DrawCards.PlayerCards)
-            {
-                DeckTopCard.transform.Rotate(Vector3.forward * 90);
-            }
-            Hand.Add(DeckTopCard);
-            OutputLog.WriteToOutput(Name + ": Drew " + DeckTopCard);
+            int CardNum = DrawCards.RemainingCards.Count - 1;
+            GameObject Card = DrawCards.RemainingCards[CardNum];
+            OutputLog.WriteToOutput("Top Deck Card:" + Card.name);
+            StartCoroutine(MoveCard(Card, DrawCards.RemainingCards, Area));
+            Hand.Add(Card);
+            OutputLog.WriteToOutput(Name + ": Drew " + Card.name);
         }
         OutputLog.WriteToOutput(Name + ": Drew " + NumberOfCards + " cards");
     }
 
     // This method activates the next player
     public IEnumerator IncrementTurns()
-//    public void StartCoroutine(IncrementTurns)()
     {
-
-        yield return new WaitForSeconds(Random.Range(2, 4));
+        OutputLog.WriteToOutput("Hello from IncrementTurns");
+        yield return new WaitForSeconds(2);
         if (!IsReversed)
         {
             Turns++;
@@ -283,28 +408,25 @@ public class TurnManager : MonoBehaviour
         while (iS < 1)
         {
             yield return new WaitForSeconds(secRate);
-            if (areaTo == EnemyArea2)
+            if (areaTo == EnemyArea1 || areaTo == EnemyArea3)
             {
+                //Cards sent to EnemyArea1 and EnemyArea3 should be rotated.
                 StartCoroutine(DrawCards.MoveTo(areaTo, card, true, rate));
+            }
+            else if (areaTo == EnemyArea2 || areaTo == PlayerArea)
+            {
+                //Cards sent to EnemyArea2 and PlayerArea should not be rotated.
+                StartCoroutine(DrawCards.MoveTo(areaTo, card, false, rate));
             }
             else
             {
-                StartCoroutine(DrawCards.MoveTo(areaTo, card, false, rate));
+                //This is for playing cards on the discard pile
+                //If the card is rotated (isSideways) we need to rotate it again
+                StartCoroutine(DrawCards.MoveTo(areaTo, card, card.GetComponent<CardProperties>().isSideways, rate));
             }
-            //StartCoroutine(DrawCards.MoveTo(areaTo, card, true, rate));
             iS++;
         }
         listFrom.Remove(card);
         yield return new WaitForSeconds(secRate);
-    }
-
-    public static void CleanupDiscardArea()
-    {
-        if (DrawCards.PlayedCards.Count == 6)
-        {
-            OutputLog.WriteToOutput("Removed " + DrawCards.PlayedCards[0]);
-            Destroy(DrawCards.PlayedCards[0]);
-            DrawCards.PlayedCards.RemoveAt(0);
-        }
     }
 }
