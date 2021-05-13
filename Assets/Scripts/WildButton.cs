@@ -4,24 +4,35 @@ using UnityEngine;
 
 public class WildButton : MonoBehaviour
 {
-    public GameObject WildMenu;
+    private GameObject WildMenu;
     private GameObject turnManagerGO;
+    TurnManager turnManager;
 
     private void Start()
     {
-        turnManagerGO = GameObject.Find("TurnManager");
+        WildMenu = gameObject.transform.parent.gameObject;
+        turnManagerGO = GameObject.Find("GameManager");
+        turnManager = turnManagerGO.GetComponent<TurnManager>();
     }
 
     public void OnClick()
     {
-        TurnManager turnManager = turnManagerGO.GetComponent<TurnManager>();
         string ColorSelected = gameObject.name;
         ColorSelected = ColorSelected.Replace("Button", "");
         DrawCards.CurrentPlayedCard.GetComponent<CardProperties>().cardColor = ColorSelected;
-        OutputLog.WriteToOutput("Player called " + ColorSelected);
+        Debug.Log("Player called " + ColorSelected);
         StartCoroutine(turnManager.IncrementTurns());
-        Destroy(WildMenu);
+        //turnManagerGO.GetComponent<HighlightPlayer>().SetSelection();
+        WildMenu.transform.position = new Vector3(-10000, 0, 0);
         TurnManager.isWildMenuShown = false;
-        OutputLog.WriteToOutput("Wild Menu hidden");
+        StartCoroutine(removeMenu());
+        Debug.Log("Wild Menu hidden");
+    }
+
+    IEnumerator removeMenu()
+    {
+        yield return new WaitForSeconds(2.5F);
+        Destroy(WildMenu);
+        //turnManager.WildMenu.SetActive(false);
     }
 }

@@ -71,7 +71,6 @@ public class DrawCards : MonoBehaviour
     public GameObject DiscardPile;
     public GameObject Button;
     public GameObject Card;
-    public Button button;
     public static GameObject CurrentPlayedCard;
 
     public static List<GameObject> AllCards = new List<GameObject>();
@@ -86,154 +85,168 @@ public class DrawCards : MonoBehaviour
     public float rate = 0.5F;
     public float secRate = 0.5F;
     public int iS;
-    private bool WasClicked;
     private GameObject turnManagerGO;
+    public static GameObject dragObject;
 
     // Start is called before the first frame update
     public void Start()
     {
-        turnManagerGO = GameObject.Find("TurnManager");
-        CreateNewDeck();
+        //PlayerArea = GameObject.Find("PlayerArea");
+        //EnemyArea1 = GameObject.Find("EnemyArea1");
+        //EnemyArea2 = GameObject.Find("EnemyArea2");
+        //EnemyArea3 = GameObject.Find("EnemyArea3");
+        //DeckZone = GameObject.Find("DeckArea");
+        //DiscardPile = GameObject.Find("DiscardArea");
+        turnManagerGO = GameObject.Find("GameManager");
+        dragObject = GameObject.Find("DragObject");
+        CreateNewDeck(AllCards);
         Shuffle();
+        onClick(true);
     }
 
-    public void CreateNewDeck()
+    public void CreateNewDeck(List<GameObject> list)
     {
-        AllCards.Add(Blue_0);
-        AllCards.Add(Green_0);
-        AllCards.Add(Red_0);
-        AllCards.Add(Yellow_0);
+        list.Clear();
+        list.Add(Blue_0);
+        list.Add(Green_0);
+        list.Add(Red_0);
+        list.Add(Yellow_0);
 
         for (int i = 0; i < 2; i++)
         {
-            AllCards.Add(Blue_1);
-            AllCards.Add(Blue_2);
-            AllCards.Add(Blue_3);
-            AllCards.Add(Blue_4);
-            AllCards.Add(Blue_5);
-            AllCards.Add(Blue_6);
-            AllCards.Add(Blue_7);
-            AllCards.Add(Blue_8);
-            AllCards.Add(Blue_9);
-            AllCards.Add(Blue_D);
-            AllCards.Add(Blue_R);
-            AllCards.Add(Blue_S);
+            list.Add(Blue_1);
+            list.Add(Blue_2);
+            list.Add(Blue_3);
+            list.Add(Blue_4);
+            list.Add(Blue_5);
+            list.Add(Blue_6);
+            list.Add(Blue_7);
+            list.Add(Blue_8);
+            list.Add(Blue_9);
+            list.Add(Blue_D);
+            list.Add(Blue_R);
+            list.Add(Blue_S);
             //---------------------------------------
-            AllCards.Add(Green_1);
-            AllCards.Add(Green_2);
-            AllCards.Add(Green_3);
-            AllCards.Add(Green_4);
-            AllCards.Add(Green_5);
-            AllCards.Add(Green_6);
-            AllCards.Add(Green_7);
-            AllCards.Add(Green_8);
-            AllCards.Add(Green_9);
-            AllCards.Add(Green_D);
-            AllCards.Add(Green_R);
-            AllCards.Add(Green_S);
+            list.Add(Green_1);
+            list.Add(Green_2);
+            list.Add(Green_3);
+            list.Add(Green_4);
+            list.Add(Green_5);
+            list.Add(Green_6);
+            list.Add(Green_7);
+            list.Add(Green_8);
+            list.Add(Green_9);
+            list.Add(Green_D);
+            list.Add(Green_R);
+            list.Add(Green_S);
             //---------------------------------------
-            AllCards.Add(Red_1);
-            AllCards.Add(Red_2);
-            AllCards.Add(Red_3);
-            AllCards.Add(Red_4);
-            AllCards.Add(Red_5);
-            AllCards.Add(Red_6);
-            AllCards.Add(Red_7);
-            AllCards.Add(Red_8);
-            AllCards.Add(Red_9);
-            AllCards.Add(Red_D);
-            AllCards.Add(Red_R);
-            AllCards.Add(Red_S);
+            list.Add(Red_1);
+            list.Add(Red_2);
+            list.Add(Red_3);
+            list.Add(Red_4);
+            list.Add(Red_5);
+            list.Add(Red_6);
+            list.Add(Red_7);
+            list.Add(Red_8);
+            list.Add(Red_9);
+            list.Add(Red_D);
+            list.Add(Red_R);
+            list.Add(Red_S);
             //---------------------------------------
-            AllCards.Add(Yellow_1);
-            AllCards.Add(Yellow_2);
-            AllCards.Add(Yellow_3);
-            AllCards.Add(Yellow_4);
-            AllCards.Add(Yellow_5);
-            AllCards.Add(Yellow_6);
-            AllCards.Add(Yellow_7);
-            AllCards.Add(Yellow_8);
-            AllCards.Add(Yellow_9);
-            AllCards.Add(Yellow_D);
-            AllCards.Add(Yellow_R);
-            AllCards.Add(Yellow_S);
+            list.Add(Yellow_1);
+            list.Add(Yellow_2);
+            list.Add(Yellow_3);
+            list.Add(Yellow_4);
+            list.Add(Yellow_5);
+            list.Add(Yellow_6);
+            list.Add(Yellow_7);
+            list.Add(Yellow_8);
+            list.Add(Yellow_9);
+            list.Add(Yellow_D);
+            list.Add(Yellow_R);
+            list.Add(Yellow_S);
         }
 
         for (int i = 0; i < 4; i++)
         {
-            AllCards.Add(Wild);
-            AllCards.Add(WildDraw4);
+            list.Add(Wild);
+            list.Add(WildDraw4);
         }
+
+        //for (int i = 0; i < 1; i++)
+        //{
+        //    AllCards.Add(Red_S);
+        //    AllCards.Add(Yellow_S);
+        //    AllCards.Add(Green_S);
+        //    AllCards.Add(Blue_S);
+        //}
     }
 
     public void Shuffle()
     {
         List<GameObject> tmp = new List<GameObject>();
 
+    reshuffle:
         int max = AllCards.Count;
         while (max > 0)
         {
-            int offset = UnityEngine.Random.Range(0, max);
+            int offset = Random.Range(0, max);
             tmp.Add(AllCards[offset]);
             AllCards.RemoveAt(offset);
             max -= 1;
         }
         AllCards = tmp;
 
-        //This is to make sure the discard is not a Wild card
+        // This is to make sure the discard is not a Wild card
         Card = AllCards[AllCards.Count - 29];
         if (Card.GetComponent<CardProperties>().cardType == "Wild" || Card.GetComponent<CardProperties>().cardType == "WildDraw4")
         {
-            OutputLog.WriteToOutput("Discard was WILD!!!");
-            max = AllCards.Count;
-            while (max > 0)
-            {
-                int offset = UnityEngine.Random.Range(0, max);
-                tmp.Add(AllCards[offset]);
-                AllCards.RemoveAt(offset);
-                max -= 1;
-            }
-            AllCards = tmp;
+            Debug.Log("Discard was WILD!!!");
+            //max = AllCards.Count;
+            //while (max > 0)
+            //{
+            //    int offset = Random.Range(0, max);
+            //    tmp.Add(AllCards[offset]);
+            //    AllCards.RemoveAt(offset);
+            //    max -= 1;
+            //}
+            //AllCards = tmp;
+            goto reshuffle;
         }
     }
 
-    public void onClick()
+    public void onClick(bool isFromThis)
     {
-        if (WasClicked == false)
+        // Destroy any remaining cards before dealing new ones.
+        //for (int i = 0; i < PlayerArea.transform.childCount; i++)
+        //    Destroy(PlayerArea.transform.GetChild(i).gameObject);
+
+        //for (int i = 0; i < EnemyArea1.transform.childCount; i++)
+        //    Destroy(EnemyArea1.transform.GetChild(i).gameObject);
+
+        //for (int i = 0; i < EnemyArea2.transform.childCount; i++)
+        //    Destroy(EnemyArea2.transform.GetChild(i).gameObject);
+
+        //for (int i = 0; i < EnemyArea3.transform.childCount; i++)
+        //    Destroy(EnemyArea3.transform.GetChild(i).gameObject);
+
+        // Create the deck of cards.
+        for (int i = 0; i < AllCards.Count; i++)
         {
-            WasClicked = true;
+            //Put the remainder of the deck in the DeckZone.
+            Card = Instantiate(AllCards[i], new Vector3(0, 0, 0), Quaternion.identity);
+            Card.transform.SetParent(DeckZone.transform, false);
+            Card.GetComponent<CardFlipper>().Flip();
+            RemainingCards.Add(Card);
+        }
 
-            if (gameObject.name == "NextRoundButton" || gameObject.name == "NewGameButton")
-            {
-                GameObject.Find("MenuBackground").SetActive(false);
-                gameObject.transform.position = new Vector3(-10000, 0, 0);
-            }
-
-            // Destroy any remaining cards before dealing new ones.
-            for (int i = 0; i < PlayerArea.transform.childCount; i++)
-                Destroy(PlayerArea.transform.GetChild(i).gameObject);
-
-            for (int i = 0; i < EnemyArea1.transform.childCount; i++)
-                Destroy(EnemyArea1.transform.GetChild(i).gameObject);
-
-            for (int i = 0; i < EnemyArea2.transform.childCount; i++)
-                Destroy(EnemyArea2.transform.GetChild(i).gameObject);
-
-            for (int i = 0; i < EnemyArea3.transform.childCount; i++)
-                Destroy(EnemyArea3.transform.GetChild(i).gameObject);
-
-            // Create the deck of cards.
-            for (int i = 0; i < AllCards.Count; i++)
-            {
-                //Put the remainder of the deck in the DeckZone.
-                Card = Instantiate(AllCards[i], new Vector3(0, 0, 0), Quaternion.identity);
-                Card.transform.SetParent(DeckZone.transform, false);
-                Card.GetComponent<CardFlipper>().Flip();
-                RemainingCards.Add(Card);
-
-            }
-
-            // Deal out the cards.
+        // Deal out the cards.
+        if (isFromThis == true)
+        {
+            PlayerCards.Clear();
+            EnemyCards1.Clear();
+            EnemyCards2.Clear();
+            EnemyCards3.Clear();
             StartCoroutine(DealCards());
         }
     }
@@ -256,7 +269,7 @@ public class DrawCards : MonoBehaviour
                     }
                     RemainingCards.Remove(Card);
                     PlayerCards.Add(Card);
-                    OutputLog.WriteToOutput("Player received: " + Card.name);
+                    Debug.Log("Player received: " + Card.name);
                     Card.GetComponent<CardFlipper>().Flip();
 
                 }
@@ -272,7 +285,7 @@ public class DrawCards : MonoBehaviour
                     }
                     RemainingCards.Remove(Card);
                     EnemyCards1.Add(Card);
-                    OutputLog.WriteToOutput("Enemy1 received: " + Card.name);
+                    Debug.Log("Enemy1 received: " + Card.name);
                 }
                 else if (iP == 2)
                 {
@@ -286,7 +299,7 @@ public class DrawCards : MonoBehaviour
                     }
                     RemainingCards.Remove(Card);
                     EnemyCards2.Add(Card);
-                    OutputLog.WriteToOutput("Enemy2 received: " + Card.name);
+                    Debug.Log("Enemy2 received: " + Card.name);
                 }
                 else if (iP == 3)
                 {
@@ -300,7 +313,7 @@ public class DrawCards : MonoBehaviour
                     }
                     RemainingCards.Remove(Card);
                     EnemyCards3.Add(Card);
-                    OutputLog.WriteToOutput("Enemy3 received: " + Card.name);
+                    Debug.Log("Enemy3 received: " + Card.name);
                 }
             }
         }
@@ -317,10 +330,10 @@ public class DrawCards : MonoBehaviour
         PlayedCards.Add(Card);
         CurrentPlayedCard = Card;
         Card.GetComponent<CardFlipper>().Flip();
-        OutputLog.WriteToOutput("DiscardPile received: " + Card.name);
+        Debug.Log("DiscardPile received: " + Card.name);
         yield return new WaitForSeconds(secRate);
 
-        //Gives the player authority over their cards
+        // Gives the player authority over their cards
         for (int i = 0; i < PlayerCards.Count; i++)
         {
             PlayerCards[i].GetComponent<CardProperties>().HasAuthority = true;
@@ -350,20 +363,25 @@ public class DrawCards : MonoBehaviour
             turnManagerGO.GetComponent<TurnManager>().TurnResult = CurrentPlayedCard.GetComponent<CardProperties>().cardType;
         }
 
+        turnManagerGO.GetComponent<HighlightPlayer>().enabled = true;
+        //turnManagerGO.GetComponent<HighlightPlayer>().SetSelection();
+        turnManagerGO.GetComponent<TurnManager>().CardColorImage.enabled = true;
+
         turnManagerGO.GetComponent<TurnManager>().PlayerManager();
 
         // Make the button inactive.
         Button.SetActive(false);
 
-        OutputLog.WriteToOutput("Dealt cards");
+        Debug.Log("Dealt cards");
     }
 
     public static IEnumerator MoveTo(GameObject CurrentArea, GameObject theGO, bool isSideways, float time)
     {
-        print("MoveTo");
+        Debug.Log("MoveTo");
         Vector3 start = theGO.transform.position;
         Vector3 end = CurrentArea.transform.position;
         float t = 0;
+        theGO.transform.SetParent(dragObject.transform, true);
 
         while (t < 1)
         {

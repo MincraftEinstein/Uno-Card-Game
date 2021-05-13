@@ -16,9 +16,9 @@ public class DragDrop : MonoBehaviour
     private GameObject startParent;
     private Vector2 startPosition;
 
-    private void Start()
+    void Start()
     {
-        turnManagerGO = GameObject.Find("TurnManager");
+        turnManagerGO = GameObject.Find("GameManager");
         dragObject = GameObject.Find("DragObject");
         Canvas = GameObject.Find("Canvas");
         isDraggable = false;
@@ -53,6 +53,7 @@ public class DragDrop : MonoBehaviour
         startPosition = transform.position;
         if (GetComponent<CardProperties>().HasAuthority == true && TurnManager.Turns == 0)
         {
+            //turnManagerGO.GetComponent<HighlightPlayer>().SetSelection();
             isDragging = true;
         }
     }
@@ -68,11 +69,17 @@ public class DragDrop : MonoBehaviour
                 TurnManager turnManager = turnManagerGO.GetComponent<TurnManager>();
                 DrawCards.RemainingCards.Remove(gameObject);
                 turnManager.PlayerManager();
+                gameObject.GetComponent<CardFlipper>().Flip();
+                DrawCards.PlayerCards.Add(gameObject);
+                turnManager.testDrawnCard(gameObject);
+                for (int i = 0; i < DrawCards.RemainingCards.Count; i++)
+                {
+                    DrawCards.RemainingCards[i].GetComponent<CardProperties>().HasAuthority = false;
+                }
             }
             transform.SetParent(dropZone.transform, false);
-            DrawCards.PlayerCards.Add(gameObject);
         }
-        //If the card is over the DropZone, then put it there; if it's not over a DropZone, then return it to 'startPosition'.
+        // If the card is over the DropZone, then put it there; if it's not over a DropZone, then return it to 'startPosition'.
         else if (isOverDropZone && canPlayCard)
         {
             transform.SetParent(dropZone.transform, false);
@@ -88,11 +95,21 @@ public class DragDrop : MonoBehaviour
 
     public void PlayerLogic(CardProperties TopCardProperties)
     {
-        //Test if (GetComponent<CardProperties>().HasAuthority == true)
+        TurnManager turnManager = turnManagerGO.GetComponent<TurnManager>();
+        bool RoundOver = false;
         if (TopCardProperties.HasAuthority)
         {
-            TurnManager turnManager = turnManagerGO.GetComponent<TurnManager>();
-            if (TopCardProperties.cardType == "Skip" || TopCardProperties.cardType == "Draw2")
+            DrawCards.CurrentPlayedCard = gameObject;
+            DrawCards.PlayerCards.Remove(gameObject);
+            DrawCards.PlayedCards.Add(gameObject);
+            Debug.Log("Player: Played " + gameObject.name);
+            TopCardProperties.HasAuthority = false;
+            if (DrawCards.PlayerCards.Count <= 0)
+            {
+                turnManager.EndGame(DrawCards.PlayerCards);
+                RoundOver = true;
+            }
+            else if (TopCardProperties.cardType == "Skip" || TopCardProperties.cardType == "Draw2")
             {
                 turnManager.TurnResult = TopCardProperties.cardType;
             }
@@ -105,19 +122,26 @@ public class DragDrop : MonoBehaviour
             {
                 TurnManager.isWildMenuShown = true;
                 Instantiate(turnManager.WildMenu, Canvas.transform);
-                OutputLog.WriteToOutput("Wild Menu shown");
-                turnManager.TurnResult = "normal";
+                //turnManager.WildMenu.SetActive(true);
+
+                Debug.Log("Wild Menu shown");
+                if (TopCardProperties.cardType == "WildDraw4")
+                {
+                    turnManager.TurnResult = "WildDraw4";
+                }
+                else
+                {
+                    turnManager.TurnResult = "normal";
+                }
             }
-            DrawCards.CurrentPlayedCard = gameObject;
-            DrawCards.PlayerCards.Remove(gameObject);
-            DrawCards.PlayedCards.Add(gameObject);
-            OutputLog.WriteToOutput("Player: Played " + gameObject.name);
-            //Test GetComponent<CardProperties>().HasAuthority = false;
-            TopCardProperties.HasAuthority = false;
             //if (TopCardProperties.cardType != "Wild" || TopCardProperties.cardType != "WildDraw4")
-            if (TurnManager.isWildMenuShown == false)
+            if (RoundOver == false)
             {
-                StartCoroutine(turnManager.IncrementTurns());
+                if (TurnManager.isWildMenuShown == false)
+                {
+                    StartCoroutine(turnManager.IncrementTurns());
+                    //turnManagerGO.GetComponent<HighlightPlayer>().SetSelection();
+                }
             }
         }
     }
