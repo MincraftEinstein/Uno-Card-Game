@@ -14,14 +14,17 @@ public class DragDrop : MonoBehaviour
     private GameObject dragObject;
     private GameObject Canvas;
     private GameObject startParent;
+    //private GameObject playerArea2;
     private Vector2 startPosition;
 
     void Start()
     {
+        //playerArea2 = GameObject.Find("PlayerArea2");
         turnManagerGO = GameObject.Find("GameManager");
         dragObject = GameObject.Find("DragObject");
         Canvas = GameObject.Find("Canvas");
         isDraggable = false;
+        //playerArea2.SetActive(false);
     }
 
     // Update is called once per frame
@@ -77,8 +80,20 @@ public class DragDrop : MonoBehaviour
                     DrawCards.RemainingCards[i].GetComponent<CardProperties>().HasAuthority = false;
                 }
             }
+
+            //Transform[] children;
+            //children = ;
+            //if (dropZone.GetComponentsInChildren<Transform>().Length >= 7)
+            //{
+            //    playerArea2.SetActive(true);
+            //    transform.SetParent(GameObject.Find("PlayerArea2").transform, false);
+            //}
+            //else
+            //{
             transform.SetParent(dropZone.transform, false);
+            //}
         }
+
         // If the card is over the DropZone, then put it there; if it's not over a DropZone, then return it to 'startPosition'.
         else if (isOverDropZone && canPlayCard)
         {

@@ -173,13 +173,13 @@ public class DrawCards : MonoBehaviour
             list.Add(WildDraw4);
         }
 
-        //for (int i = 0; i < 1; i++)
-        //{
-        //    AllCards.Add(Red_S);
-        //    AllCards.Add(Yellow_S);
-        //    AllCards.Add(Green_S);
-        //    AllCards.Add(Blue_S);
-        //}
+        for (int i = 0; i < 2; i++)
+        {
+            AllCards.Add(Red_D);
+            AllCards.Add(Yellow_D);
+            AllCards.Add(Green_D);
+            AllCards.Add(Blue_D);
+        }
     }
 
     public void Shuffle()
