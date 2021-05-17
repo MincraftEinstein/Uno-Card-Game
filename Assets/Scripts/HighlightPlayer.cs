@@ -25,6 +25,11 @@ public class HighlightPlayer : MonoBehaviour
     {
         SetSelection();
         ArrangeCards();
+
+        if (playerImage.rectTransform.sizeDelta.x > 342)
+        {
+            playerImage.rectTransform.sizeDelta = new Vector2(342, playerImage.rectTransform.sizeDelta.y);
+        }
     }
 
     public void SetSelection()

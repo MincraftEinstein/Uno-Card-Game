@@ -67,6 +67,7 @@ public class DragDrop : MonoBehaviour
         isDragging = false;
         if (isOverDropZone && dropZone == GameObject.Find("PlayerArea"))
         {
+            transform.SetParent(dropZone.transform, false);
             if (startParent == GameObject.Find("DeckArea"))
             {
                 TurnManager turnManager = turnManagerGO.GetComponent<TurnManager>();
@@ -77,7 +78,10 @@ public class DragDrop : MonoBehaviour
                 turnManager.testDrawnCard(gameObject);
                 for (int i = 0; i < DrawCards.RemainingCards.Count; i++)
                 {
-                    DrawCards.RemainingCards[i].GetComponent<CardProperties>().HasAuthority = false;
+                    if (DrawCards.RemainingCards[i] != null)
+                    {
+                        DrawCards.RemainingCards[i].GetComponent<CardProperties>().HasAuthority = false;
+                    }
                 }
             }
 
@@ -90,7 +94,7 @@ public class DragDrop : MonoBehaviour
             //}
             //else
             //{
-            transform.SetParent(dropZone.transform, false);
+            
             //}
         }
 

@@ -173,13 +173,13 @@ public class DrawCards : MonoBehaviour
             list.Add(WildDraw4);
         }
 
-        for (int i = 0; i < 2; i++)
-        {
-            AllCards.Add(Red_D);
-            AllCards.Add(Yellow_D);
-            AllCards.Add(Green_D);
-            AllCards.Add(Blue_D);
-        }
+        //for (int i = 0; i < 2; i++)
+        //{
+        //    AllCards.Add(Red_D);
+        //    AllCards.Add(Yellow_D);
+        //    AllCards.Add(Green_D);
+        //    AllCards.Add(Blue_D);
+        //}
     }
 
     public void Shuffle()
@@ -215,7 +215,7 @@ public class DrawCards : MonoBehaviour
         }
     }
 
-    public void onClick(bool isFromThis)
+    public void onClick(bool dealcards)
     {
         // Destroy any remaining cards before dealing new ones.
         //for (int i = 0; i < PlayerArea.transform.childCount; i++)
@@ -241,7 +241,7 @@ public class DrawCards : MonoBehaviour
         }
 
         // Deal out the cards.
-        if (isFromThis == true)
+        if (dealcards == true)
         {
             PlayerCards.Clear();
             EnemyCards1.Clear();

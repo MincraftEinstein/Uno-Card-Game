@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -117,50 +118,46 @@ public class TurnManager : MonoBehaviour
             }
             Debug.Log("Removed all old cards");
 
-            DrawCards drawCards = gameObject.GetComponent<DrawCards>();
-            List<GameObject> newDeck = new List<GameObject>();
-            drawCards.CreateNewDeck(newDeck);
-            float num = newDeck.Count;
-            for (int i = 0; i < num; i++)
+            DrawCards drawCards = GetComponent<DrawCards>();
+            List<GameObject> tempDeck = new List<GameObject>();
+            drawCards.CreateNewDeck(tempDeck);
+            List<GameObject> newDeck = new List<GameObject>(tempDeck);
+            for (int i = 0; i < tempDeck.Count; i++)
             {
                 for (int i1 = 0; i1 < DrawCards.PlayerCards.Count; i1++)
                 {
-                    CardProperties deckCard = newDeck[i].GetComponent<CardProperties>();
+                    CardProperties deckCard = tempDeck[i].GetComponent<CardProperties>();
                     CardProperties handCard = DrawCards.PlayerCards[i1].GetComponent<CardProperties>();
                     if (deckCard.cardColor == handCard.cardColor && deckCard.cardType == handCard.cardType)
                     {
-                        newDeck.Remove(newDeck[i]);
-                        num = newDeck.Count;
+                        newDeck.Remove(tempDeck[i]);
                     }
                 }
                 for (int i2 = 0; i2 < DrawCards.EnemyCards1.Count; i2++)
                 {
-                    CardProperties deckCard = newDeck[i].GetComponent<CardProperties>();
+                    CardProperties deckCard = tempDeck[i].GetComponent<CardProperties>();
                     CardProperties handCard = DrawCards.EnemyCards1[i2].GetComponent<CardProperties>();
                     if (deckCard.cardColor == handCard.cardColor && deckCard.cardType == handCard.cardType)
                     {
-                        newDeck.Remove(newDeck[i]);
-                        num = newDeck.Count;
+                        newDeck.Remove(tempDeck[i]);
                     }
                 }
                 for (int i3 = 0; i3 < DrawCards.EnemyCards2.Count; i3++)
                 {
-                    CardProperties deckCard = newDeck[i].GetComponent<CardProperties>();
+                    CardProperties deckCard = tempDeck[i].GetComponent<CardProperties>();
                     CardProperties handCard = DrawCards.EnemyCards2[i3].GetComponent<CardProperties>();
                     if (deckCard.cardColor == handCard.cardColor && deckCard.cardType == handCard.cardType)
                     {
-                        newDeck.Remove(newDeck[i]);
-                        num = newDeck.Count;
+                        newDeck.Remove(tempDeck[i]);
                     }
                 }
                 for (int i4 = 0; i4 < DrawCards.EnemyCards3.Count; i4++)
                 {
-                    CardProperties deckCard = newDeck[i].GetComponent<CardProperties>();
+                    CardProperties deckCard = tempDeck[i].GetComponent<CardProperties>();
                     CardProperties handCard = DrawCards.EnemyCards3[i4].GetComponent<CardProperties>();
                     if (deckCard.cardColor == handCard.cardColor && deckCard.cardType == handCard.cardType)
                     {
-                        newDeck.Remove(newDeck[i]);
-                        num = newDeck.Count;
+                        newDeck.Remove(tempDeck[i]);
                     }
                 }
             }
@@ -184,7 +181,7 @@ public class TurnManager : MonoBehaviour
             if (bottomCard != null)
             {
                 Destroy(bottomCard);
-                Debug.Log("Removed " + bottomCard + "from game");
+                Debug.Log("Removed " + bottomCard + " from game");
             }
         }
     }
@@ -446,20 +443,17 @@ public class TurnManager : MonoBehaviour
         }
     }
 
-    public int FindLargestNum(int n1, int n2, int n3, int n4)
+    public int FindLargestNum(int num1, int num2, int num3, int num4)
     {
-        int max;
+        int max = Math.Max(Math.Max(Math.Max(num1, num2), num3), num4);
 
-        // Largest among n1 and n2 
-        max = (n1 > n2 && n1 > n2 && n1 > n2) ?
-                    n1 : (n2 > n3 && n2 > n4) ?
-                               n2 : (n3 > n4) ? n3 : n4;
+        //// Largest among n1 and n2 
+        //max = (n1 > n2 && n1 > n2 && n1 > n2) ?
+        //            n1 : (n2 > n3 && n2 > n4) ?
+        //                       n2 : (n3 > n4) ? n3 : n4;
 
         // Print the largest number 
-        Debug.Log("Largest number among " +
-                            n1 + ", " + n2 + ", " +
-                                n3 + " and " + n4 +
-                                     " is " + max);
+        Debug.Log("Largest number among " + num1 + ", " + num2 + ", " + num3 + " and " + num4 + " is " + max);
         return max;
     }
 
