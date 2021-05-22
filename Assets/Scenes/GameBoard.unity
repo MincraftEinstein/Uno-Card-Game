@@ -4214,7 +4214,8 @@ MonoBehaviour:
   Enemy1ScoreInt: 0
   Enemy2ScoreInt: 0
   Enemy3ScoreInt: 0
-  GameOver: 0
+  gameOver: 0
+  roundOver: 0
   CardColorImage: {fileID: 1943090064}
   RedCardColor: {fileID: 6132800556100370495, guid: a73a4a58349b4c144be1bcea777b2a34,
     type: 3}
@@ -4227,6 +4228,7 @@ MonoBehaviour:
   isPaused: 0
   RoundFinishedMenu: {fileID: 1312989639}
   GameOverMenu: {fileID: 1738218563}
+  Menus: {fileID: 878374761}
 --- !u!4 &1705626803
 Transform:
   m_ObjectHideFlags: 0

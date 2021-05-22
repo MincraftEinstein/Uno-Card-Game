@@ -111,7 +111,7 @@ public class HighlightPlayer : MonoBehaviour
             children2.Add(cards2[i]);
         }
 
-        if ((children.Count - 1) > 6)
+        if ((children.Count - 1) > 6) // 6 because 0 is 1
         {
             Debug.Log("Player had more than 7 cards");
             Debug.Log("Adding a new row");
@@ -119,7 +119,7 @@ public class HighlightPlayer : MonoBehaviour
 
             for (int i = 0; i < children.Count; i++)
             {
-                if (children.IndexOf(children[i]) > 6)
+                if (children.IndexOf(children[i]) > 6) // 6 because 0 is 1
                 {
                     children[i].transform.SetParent(playerArea2.transform, false);
                     children.Remove(children[i]);

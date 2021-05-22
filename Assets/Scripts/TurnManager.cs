@@ -31,7 +31,8 @@ public class TurnManager : MonoBehaviour
     public int Enemy2ScoreInt = 0;
     public int Enemy3ScoreInt = 0;
     private bool PlayerWon;
-    public bool GameOver;
+    public bool gameOver;
+    public bool roundOver;
     public Image CardColorImage;
     public Sprite RedCardColor;
     public Sprite YellowCardColor;
@@ -40,6 +41,7 @@ public class TurnManager : MonoBehaviour
     public bool isPaused;
     public GameObject RoundFinishedMenu;
     public GameObject GameOverMenu;
+    public GameObject Menus;
 
     private List<GameObject> PlayableCards = new List<GameObject>();
 
@@ -55,7 +57,7 @@ public class TurnManager : MonoBehaviour
     {
         //CleanupDiscardArea();
         //Color newcolor;
-        if (GameOver == false)
+        if (gameOver == false)
         {
             if (CardColorImage.enabled)
             {
@@ -89,34 +91,37 @@ public class TurnManager : MonoBehaviour
                     CardColorImage.color = Color.white;
                 }
             }
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (roundOver == false)
             {
-                MenuButtons buttons = GetComponent<MenuButtons>();
-                if (isPaused)
+                if (Input.GetKeyDown(KeyCode.Escape))
                 {
-                    buttons.PlayButton();
-                }
-                else
-                {
-                    buttons.PauseButton();
-                }
+                    MenuButtons buttons = GetComponent<MenuButtons>();
+                    if (isPaused)
+                    {
+                        buttons.PlayButton();
+                    }
+                    else
+                    {
+                        buttons.PauseButton();
+                    }
+                } 
             }
         }
     }
 
     private void ReshuffleDeck()
     {
-        if (DrawCards.RemainingCards.Count <= 71)
+        if (DrawCards.RemainingCards.Count <= 0)
         {
             Debug.Log("Deck has 0 cards");
             // This is for testing
-            for (int i = 0; i < DrawCards.RemainingCards.Count; i++)
-            {
-                GameObject card = DrawCards.RemainingCards[i];
-                DrawCards.RemainingCards.Remove(card);
-                Destroy(card);
-            }
-            Debug.Log("Removed all old cards");
+            //for (int i = 0; i < DrawCards.RemainingCards.Count; i++)
+            //{
+            //    GameObject card = DrawCards.RemainingCards[i];
+            //    DrawCards.RemainingCards.Remove(card);
+            //    Destroy(card);
+            //}
+            //Debug.Log("Removed all old cards");
 
             DrawCards drawCards = GetComponent<DrawCards>();
             List<GameObject> tempDeck = new List<GameObject>();
@@ -188,7 +193,7 @@ public class TurnManager : MonoBehaviour
 
     //------Player Code---------------------------------------------------------------------------------------------------------------------------
 
-    public void PlayerManager()
+    public IEnumerator PlayerManager()
     {
         if (Turns == 0)
         {
@@ -196,25 +201,38 @@ public class TurnManager : MonoBehaviour
             if (TurnResult == "Skip")
             {
                 Debug.Log("Hello from PlayerManager.Skip");
+                for (int i = 0; i < DrawCards.PlayerCards.Count - 1; i++)
+                {
+                    DrawCards.PlayerCards[i].GetComponent<CardProperties>().HasAuthority = false;
+                }
                 TurnResult = "normal";
-                StartCoroutine(IncrementTurns());
+                StartCoroutine(IncrementTurns(false));
             }
             else if (TurnResult == "Draw2")
             {
                 Debug.Log("Hello from PlayerManager.Draw2");
-                StartCoroutine(DrawCardsFromDeck(DrawCards.PlayerCards, PlayerArea, "Player", 2));
+                for (int i = 0; i < DrawCards.PlayerCards.Count - 1; i++)
+                {
+                    DrawCards.PlayerCards[i].GetComponent<CardProperties>().HasAuthority = false;
+                }
+                yield return StartCoroutine(DrawCardsFromDeck(DrawCards.PlayerCards, PlayerArea, "Player", 2));
                 TurnResult = "normal";
-                StartCoroutine(IncrementTurns());
+                StartCoroutine(IncrementTurns(false));
             }
             else if (TurnResult == "WildDraw4")
             {
                 Debug.Log("Hello from PlayerManager.WildDraw4");
-                StartCoroutine(DrawCardsFromDeck(DrawCards.PlayerCards, PlayerArea, "Player", 4));
+                for (int i = 0; i < DrawCards.PlayerCards.Count - 1; i++)
+                {
+                    DrawCards.PlayerCards[i].GetComponent<CardProperties>().HasAuthority = false;
+                }
+                yield return StartCoroutine(DrawCardsFromDeck(DrawCards.PlayerCards, PlayerArea, "Player", 4));
                 TurnResult = "normal";
-                StartCoroutine(IncrementTurns());
+                StartCoroutine(IncrementTurns(false));
             }
             else
             {
+                Debug.Log("Inside the else");
                 GameObject TopCard = DrawCards.CurrentPlayedCard;
                 CardProperties TopCardProperties = TopCard.GetComponent<CardProperties>();
                 // Test the each card to identify playable cards.
@@ -223,6 +241,7 @@ public class TurnManager : MonoBehaviour
                     GameObject Card = DrawCards.PlayerCards[i];
                     CardProperties CardProperties = Card.GetComponent<CardProperties>();
                     CardProperties.HasAuthority = true;
+                    Debug.Log("Given authority");
                     if (CardProperties.cardColor == TopCardProperties.cardColor || CardProperties.cardType == TopCardProperties.cardType || CardProperties.cardType == "Wild" || CardProperties.cardType == "WildDraw4")
                     {
                         Card.GetComponent<DragDrop>().canPlayCard = true;
@@ -236,6 +255,7 @@ public class TurnManager : MonoBehaviour
                     int CardNum = DrawCards.RemainingCards.Count - 1;
                     GameObject Card = DrawCards.RemainingCards[CardNum];
                     Card.GetComponent<CardProperties>().HasAuthority = true;
+                    Debug.Log("Given authority");
                 }
             }
         }
@@ -249,7 +269,7 @@ public class TurnManager : MonoBehaviour
         //}
     }
 
-    public void testDrawnCard(GameObject Card)
+    public void TestDrawnCard(GameObject Card)
     {
         // Test the new card to see if it can be played
         GameObject TopCard = DrawCards.CurrentPlayedCard;
@@ -270,7 +290,7 @@ public class TurnManager : MonoBehaviour
             // Card isn't playable, so move to the next player.
             TurnResult = "normal";
             Debug.Log("Can't play card");
-            StartCoroutine(IncrementTurns());
+            StartCoroutine(IncrementTurns(true));
         }
     }
 
@@ -377,7 +397,7 @@ public class TurnManager : MonoBehaviour
         }
         else
         {
-            StartCoroutine(IncrementTurns());
+            StartCoroutine(IncrementTurns(true));
         }
     }
 
@@ -471,7 +491,11 @@ public class TurnManager : MonoBehaviour
                 PlayerWon = false;
                 Debug.Log("Player Lost");
             }
-            GameOver = true;
+            gameOver = true;
+        }
+        else
+        {
+            roundOver = true;
         }
         StartCoroutine(LoadMenu(Hand));
     }
@@ -564,7 +588,7 @@ public class TurnManager : MonoBehaviour
         //Instantiate(MenuBackground, new Vector3(0, 0, 0), MenuBackground.transform.rotation);
         //GameObject menuInstance = GameObject.Find(MenuBackground.name + "(Clone)");
         //menuInstance.transform.SetParent(GameObject.Find("Canvas").transform, false);
-        if (GameOver)
+        if (gameOver)
         {
             //Instantiate(GameOverText, new Vector3(0, 118, 0), GameOverText.transform.rotation);
             //GameObject gameOverTextInstance = GameObject.Find("GameOverText(Clone)");
@@ -607,31 +631,50 @@ public class TurnManager : MonoBehaviour
             //nextRoundButtonInstance.transform.SetParent(menuInstance.transform, false);
             RoundFinishedMenu.SetActive(true);
         }
-        GameObject scoreParent = GameObject.Find("Menus");
 
-        Instantiate(PlayerScore, new Vector3(-1.5F, 25, 20), PlayerScore.transform.rotation);
+        Instantiate(PlayerScore, new Vector3(ScorePos(-13, PlayerScoreInt), 25, 20), PlayerScore.transform.rotation);
         GameObject playerScoreInstance = GameObject.Find("PlayerScore(Clone)");
-        playerScoreInstance.transform.SetParent(scoreParent.transform, false);
+        playerScoreInstance.transform.SetParent(Menus.transform, false);
         playerScoreInstance.GetComponent<Text>().text = "Player Scored: " + PlayerScoreInt.ToString();
         Debug.Log("Loaded player score");
 
-        Instantiate(Enemy1Score, new Vector3(-12, -12, 20), Enemy1Score.transform.rotation);
+        Instantiate(Enemy1Score, new Vector3(ScorePos(-23, Enemy1ScoreInt), -12, 20), Enemy1Score.transform.rotation);
         GameObject enemy1ScoreInstance = GameObject.Find("Enemy1Score(Clone)");
-        enemy1ScoreInstance.transform.SetParent(scoreParent.transform, false);
+        enemy1ScoreInstance.transform.SetParent(Menus.transform, false);
         enemy1ScoreInstance.GetComponent<Text>().text = "Enemy 1 Scored: " + Enemy1ScoreInt.ToString();
         Debug.Log("Loaded enemy 1 score");
 
-        Instantiate(Enemy2Score, new Vector3(-12, -49, 20), Enemy2Score.transform.rotation);
+        Instantiate(Enemy2Score, new Vector3(ScorePos(-23, Enemy2ScoreInt), -49, 20), Enemy2Score.transform.rotation);
         GameObject enemy2ScoreInstance = GameObject.Find("Enemy2Score(Clone)");
-        enemy2ScoreInstance.transform.SetParent(scoreParent.transform, false);
+        enemy2ScoreInstance.transform.SetParent(Menus.transform, false);
         enemy2ScoreInstance.GetComponent<Text>().text = "Enemy 2 Scored: " + Enemy2ScoreInt.ToString();
         Debug.Log("Loaded enemy 2 score");
 
-        Instantiate(Enemy3Score, new Vector3(-12, -86, 20), Enemy3Score.transform.rotation);
+        Instantiate(Enemy3Score, new Vector3(ScorePos(-23, Enemy3ScoreInt), -86, 20), Enemy3Score.transform.rotation);
         GameObject enemy3ScoreInstance = GameObject.Find("Enemy3Score(Clone)");
-        enemy3ScoreInstance.transform.SetParent(scoreParent.transform, false);
+        enemy3ScoreInstance.transform.SetParent(Menus.transform, false);
         enemy3ScoreInstance.GetComponent<Text>().text = "Enemy 3 Scored: " + Enemy3ScoreInt.ToString();
         Debug.Log("Loaded enemy 3 score");
+    }
+
+    private float ScorePos(float startPos, float score)
+    {
+        if (score < 10)
+        {
+            return startPos - 8;
+        }
+        else if (score < 100)
+        {
+            return startPos - 12;
+        }
+        else if (score < 1000)
+        {
+            return startPos - 16;
+        }
+        else
+        {
+            return startPos;
+        }
     }
 
     // This method determines what the current player will do
@@ -643,20 +686,20 @@ public class TurnManager : MonoBehaviour
         if (TurnResult == "Skip")
         {
             TurnResult = "normal";
-            StartCoroutine(IncrementTurns());
+            StartCoroutine(IncrementTurns(true));
         }
         else if (TurnResult == "Draw2")
         {
-            StartCoroutine(DrawCardsFromDeck(enemyHand, enemyArea, enemyName, 2));
+            yield return StartCoroutine(DrawCardsFromDeck(enemyHand, enemyArea, enemyName, 2));
             TurnResult = "normal";
-            StartCoroutine(IncrementTurns());
+            StartCoroutine(IncrementTurns(true));
         }
         else if (TurnResult == "WildDraw4")
         {
-            StartCoroutine(DrawCardsFromDeck(enemyHand, enemyArea, enemyName, 4));
-            yield return new WaitForSeconds(3);
+            yield return StartCoroutine(DrawCardsFromDeck(enemyHand, enemyArea, enemyName, 4));
+            //yield return new WaitForSeconds(3);
             TurnResult = "normal";
-            StartCoroutine(IncrementTurns());
+            StartCoroutine(IncrementTurns(true));
         }
         else
         {
@@ -695,7 +738,7 @@ public class TurnManager : MonoBehaviour
     }
 
     // This method activates the next player
-    public IEnumerator IncrementTurns()
+    public IEnumerator IncrementTurns(bool updatePlayer)
     {
         //if (TurnResult == "Skip")
         //{
@@ -733,9 +776,12 @@ public class TurnManager : MonoBehaviour
         }
         Debug.Log("Turns: " + Turns);
 
-        PlayerManager();
+        if (updatePlayer)
+        {
+            StartCoroutine(PlayerManager());
+        }
 
-        if (GameOver == false)
+        if (gameOver == false)
         {
             if (isWildMenuShown == false)
             {

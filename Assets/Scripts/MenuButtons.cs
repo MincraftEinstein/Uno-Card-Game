@@ -45,7 +45,7 @@ public class MenuButtons : MonoBehaviour
         if (currentScene == "GameBoard")
         {
             //TurnManager turnManager = GameObject.Find("GameManager").GetComponent<TurnManager>();
-            if (turnManager.GameOver == false)
+            if (turnManager.gameOver == false)
             {
                 PlayerPrefs.SetInt("playerScore", turnManager.PlayerScoreInt);
                 PlayerPrefs.SetInt("enemy1Score", turnManager.Enemy1ScoreInt);

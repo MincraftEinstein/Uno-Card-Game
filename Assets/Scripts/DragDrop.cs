@@ -12,8 +12,10 @@ public class DragDrop : MonoBehaviour
     private GameObject dropZone;
     private GameObject turnManagerGO;
     private GameObject dragObject;
-    private GameObject Canvas;
+    private GameObject canvas;
     private GameObject startParent;
+    private GameObject playerArea;
+    private GameObject deckArea;
     //private GameObject playerArea2;
     private Vector2 startPosition;
 
@@ -22,8 +24,11 @@ public class DragDrop : MonoBehaviour
         //playerArea2 = GameObject.Find("PlayerArea2");
         turnManagerGO = GameObject.Find("GameManager");
         dragObject = GameObject.Find("DragObject");
-        Canvas = GameObject.Find("Canvas");
+        canvas = GameObject.Find("Canvas");
+        playerArea = GameObject.Find("PlayerArea");
+        deckArea = GameObject.Find("DeckArea");
         isDraggable = false;
+        //playerArea2 = playerArea.transform.parent.GetChild(1).gameObject;
         //playerArea2.SetActive(false);
     }
 
@@ -65,17 +70,27 @@ public class DragDrop : MonoBehaviour
     {
         if (isDraggable == true) return;
         isDragging = false;
-        if (isOverDropZone && dropZone == GameObject.Find("PlayerArea"))
+        if (isOverDropZone && dropZone == playerArea)
         {
-            transform.SetParent(dropZone.transform, false);
-            if (startParent == GameObject.Find("DeckArea"))
+            //if ((playerArea.GetComponentsInChildren<CardProperties>().Length - 1) >= 6) // 6 because 0 is 1
+            //{
+            //    playerArea2.SetActive(true);
+            //    transform.SetParent(playerArea2.transform, false);
+            //}
+            //else
+            //{
+            //    playerArea2.SetActive(false);
+            transform.SetParent(playerArea.transform, false);
+            //}
+
+            if (startParent == deckArea)
             {
                 TurnManager turnManager = turnManagerGO.GetComponent<TurnManager>();
                 DrawCards.RemainingCards.Remove(gameObject);
-                turnManager.PlayerManager();
+                StartCoroutine(turnManager.PlayerManager());
                 gameObject.GetComponent<CardFlipper>().Flip();
                 DrawCards.PlayerCards.Add(gameObject);
-                turnManager.testDrawnCard(gameObject);
+                turnManager.TestDrawnCard(gameObject);
                 for (int i = 0; i < DrawCards.RemainingCards.Count; i++)
                 {
                     if (DrawCards.RemainingCards[i] != null)
@@ -83,6 +98,7 @@ public class DragDrop : MonoBehaviour
                         DrawCards.RemainingCards[i].GetComponent<CardProperties>().HasAuthority = false;
                     }
                 }
+                Debug.Log("Given authority");
             }
 
             //Transform[] children;
@@ -140,7 +156,7 @@ public class DragDrop : MonoBehaviour
             else if (TopCardProperties.cardType == "Wild" || TopCardProperties.cardType == "WildDraw4")
             {
                 TurnManager.isWildMenuShown = true;
-                Instantiate(turnManager.WildMenu, Canvas.transform);
+                Instantiate(turnManager.WildMenu, canvas.transform);
                 //turnManager.WildMenu.SetActive(true);
 
                 Debug.Log("Wild Menu shown");
@@ -158,7 +174,7 @@ public class DragDrop : MonoBehaviour
             {
                 if (TurnManager.isWildMenuShown == false)
                 {
-                    StartCoroutine(turnManager.IncrementTurns());
+                    StartCoroutine(turnManager.IncrementTurns(true));
                     //turnManagerGO.GetComponent<HighlightPlayer>().SetSelection();
                 }
             }

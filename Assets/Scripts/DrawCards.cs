@@ -175,10 +175,10 @@ public class DrawCards : MonoBehaviour
 
         //for (int i = 0; i < 2; i++)
         //{
-        //    AllCards.Add(Red_D);
-        //    AllCards.Add(Yellow_D);
-        //    AllCards.Add(Green_D);
-        //    AllCards.Add(Blue_D);
+        //    AllCards.Add(Red_S);
+        //    AllCards.Add(Yellow_S);
+        //    AllCards.Add(Green_S);
+        //    AllCards.Add(Blue_S);
         //}
     }
 
@@ -334,9 +334,14 @@ public class DrawCards : MonoBehaviour
         yield return new WaitForSeconds(secRate);
 
         // Gives the player authority over their cards
-        for (int i = 0; i < PlayerCards.Count; i++)
+        CardProperties discardProperties = RemainingCards[RemainingCards.Count - 29].GetComponent<CardProperties>();
+        if (discardProperties.cardType == "Skip" || discardProperties.cardType == "Draw2")
         {
-            PlayerCards[i].GetComponent<CardProperties>().HasAuthority = true;
+            for (int i = 0; i < PlayerCards.Count; i++)
+            {
+                PlayerCards[i].GetComponent<CardProperties>().HasAuthority = true;
+            }
+            Debug.Log("Given authority");
         }
 
         //if (CurrentPlayedCard.GetComponent<CardProperties>().cardType != "Zero"
@@ -367,7 +372,7 @@ public class DrawCards : MonoBehaviour
         //turnManagerGO.GetComponent<HighlightPlayer>().SetSelection();
         turnManagerGO.GetComponent<TurnManager>().CardColorImage.enabled = true;
 
-        turnManagerGO.GetComponent<TurnManager>().PlayerManager();
+        StartCoroutine(turnManagerGO.GetComponent<TurnManager>().PlayerManager());
 
         // Make the button inactive.
         Button.SetActive(false);
